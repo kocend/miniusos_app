@@ -1,23 +1,21 @@
 package com.miniusos_app.controller;
 
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-
-@Controller
+@RequestMapping(value = "")
+@RestController
 public class MainController {
-    @GetMapping("/")
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView getMain() {
         ModelAndView m = new ModelAndView();
         m.setViewName("login");
         return m;
     }
 
-    @PostMapping("/login")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView loggedIn(@RequestParam(value = "username",required = true) String username,
                                  @RequestParam(value = "password",required = true) String password){
         //@RequestParam(value = "option",required = true)String option,
