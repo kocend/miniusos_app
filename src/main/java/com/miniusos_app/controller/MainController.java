@@ -13,7 +13,7 @@ public class MainController {
     @GetMapping("/")
     public ModelAndView getMain() {
         ModelAndView m = new ModelAndView();
-        m.setViewName("/login.html");
+        m.setViewName("login");
         return m;
     }
 
@@ -23,9 +23,9 @@ public class MainController {
         //@RequestParam(value = "option",required = true)String option,
         ModelAndView m = new ModelAndView();
         if("kocend".equals(username)&&"abc".equals(password))
-            m.setViewName("/hello");
+            m.setViewName("hello");
         else
-            m.setViewName("/login");
+            m.setViewName("login");
         return m;
     }
 }
