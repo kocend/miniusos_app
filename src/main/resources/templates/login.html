@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link href ="css/login.css" rel="stylesheet">
+</head>
+<body>
+<div class="loginForm">
+    <form action="/login" method="POST">
+        <select>
+            <option value="student">student</option>
+            <option value="prowadzacy">prowadzący</option>
+            <option value="pracownik_dzekanatu">pracownik dziekanatu</option>
+        </select>
+        </br>
+        login
+        <input type="text" name="username"/>
+        </br>
+        hasło
+        <input type="password" name="password"/>
+        </br>
+        <input type="submit" name="submit"/>
+        </br>
+    </form>
+</div>
+</body>
+</html>
