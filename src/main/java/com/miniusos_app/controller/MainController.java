@@ -39,16 +39,16 @@ public class MainController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String Register(
+    public String Register(@RequestParam(value = "account-type",required = true) String accountType,
                            @RequestParam(value = "name",required = true) String name,
                            @RequestParam(value = "last-name",required = true) String lastName,
                            @RequestParam(value = "password",required = true) String password,
                            @RequestParam(value = "password-repeat",required = true) String passwordRepeat){
 //@RequestParam(value = "account-type",required = true) String accountType,
+       /* ModelAndView m = new ModelAndView();
+        m.setViewName("hello");*/
 
-        System.out.print(" "+name+" "+lastName+" "+password+" "+passwordRepeat);
-
-        return " "+name+" "+lastName+" "+password+" "+passwordRepeat;
+        return "registered: "+accountType+" "+name+" "+lastName+" "+password+" "+passwordRepeat;
     }
 
     @RequestMapping(value = "/student", method = RequestMethod.GET)
