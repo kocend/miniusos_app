@@ -17,5 +17,4 @@ public class PasswordEncode {
     public static void main(String[] args) {
         PasswordEncode pe = new PasswordEncode();
     }
-
 }

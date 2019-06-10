@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>registration page</title>
-</head>
-<body>
-this is registration page!
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>registration page</title>
+        <link rel="stylesheet" href="../static/css/registration.css">
+    </head>
+    <body>
+    <div class="container">
+        <h1>Rejestracja</h1>
+        <p>Wypełnij formularz aby stworzyć konto</p>
+        <hr>
+
+        <form action="/registration" method="POST">
+        <label><b>imie</b></label>
+        <input type="text" placeholder="Podaj Imie" name="name" required>
+
+        <label><b>nazwisko</b></label>
+        <input type="text" placeholder="Podaj Nazwisko" name="last-name" required>
+
+        <label><b>hasło</b></label>
+        <input type="password" placeholder="Podaj hasło" name="password" required>
+
+        <label><b>powtórz hasło</b></label>
+        <input type="password" placeholder="powtórz hasło" name="password-repeat" required>
+        </form>
+    </div>
+    <div class="container signin">
+        <p>posiadasz już konto? <a href="/login">Sign in</a>.</p>
+    </div>
+    </body>
 </html>

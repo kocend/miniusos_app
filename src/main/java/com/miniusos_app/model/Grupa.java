@@ -3,11 +3,10 @@ package com.miniusos_app.model;
 import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Grupa implements Serializable {
+public class Grupa{
     /**
      *
      */
-    private static final long serialVersionUID = 1L;
     private Integer numer;
     private DZIEN_TYGODNIA dzienTygodnia;
     private String godzinaRozpoczecia;
