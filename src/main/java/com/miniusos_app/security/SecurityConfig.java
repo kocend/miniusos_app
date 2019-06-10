@@ -27,7 +27,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                         "select username, authority from authorities where username=?");
     }
 
-    //Authorization
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
