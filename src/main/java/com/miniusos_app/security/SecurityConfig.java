@@ -22,9 +22,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     public void configureGlobal(AuthenticationManagerBuilder authenticationMgr) throws Exception{
         authenticationMgr.jdbcAuthentication().dataSource(dataSource).passwordEncoder(new BCryptPasswordEncoder())
                 .usersByUsernameQuery(
-                        "select username,passwd, enabled from users where username=?")
+                        "select username, password, enabled from users where username=?")
                 .authoritiesByUsernameQuery(
-                        "select username, role from user_roles where username=?");
+                        "select username, authority from authorities where username=?");
     }
 
     //Authorization
@@ -33,9 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http
                 .authorizeRequests()
                 .antMatchers("/student*").hasRole("STUDENT")
-                .antMatchers("/koordynator").hasRole("KOORDYNATOR")
-                .antMatchers("/pracownik_dziekanatu*").hasRole("ADMIN")
-                .antMatchers("/","/login","/registration").permitAll()
+                .antMatchers("/koordynator*").hasRole("KOORDYNATOR")
+                .antMatchers("/pracownik_dziekanatu*").hasRole("PRACOWNIK_DZIEKANATU")
+                .antMatchers("/","/registration").permitAll()
                 .and()
                 .httpBasic();
     }
