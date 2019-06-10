@@ -1,14 +1,21 @@
 package com.miniusos_app.controller;
 
+import com.miniusos_app.service.Registration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.sql.DataSource;
+
 
 @RestController
 public class MainController {
+
+    @Autowired
+    Registration registration;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView getHomePage() {
@@ -44,11 +51,20 @@ public class MainController {
                            @RequestParam(value = "last-name",required = true) String lastName,
                            @RequestParam(value = "password",required = true) String password,
                            @RequestParam(value = "password-repeat",required = true) String passwordRepeat){
-//@RequestParam(value = "account-type",required = true) String accountType,
-       /* ModelAndView m = new ModelAndView();
-        m.setViewName("hello");*/
 
-        return "registered: "+accountType+" "+name+" "+lastName+" "+password+" "+passwordRepeat;
+        int returnedValue;
+
+        if(password.equals(passwordRepeat))
+           returnedValue = registration.register(accountType,name,lastName,password);
+        else
+            return "passwords are not the same";
+
+        if(returnedValue==1)
+            return "you have been successfully registered";
+        else if(returnedValue==2)
+            return "account already exists";
+        else
+            return "something get wrong,";
     }
 
     @RequestMapping(value = "/student", method = RequestMethod.GET)
