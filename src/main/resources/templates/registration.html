@@ -12,17 +12,26 @@
         <hr>
 
         <form action="/registration" method="POST">
-        <label><b>imie</b></label>
-        <input type="text" placeholder="Podaj Imie" name="name" required>
+            <label><b>typ konta</b></label>
+            <select name="account-type">
+                <option value="student">student</option>
+                <option value="prowadzacy">koordynator</option>
+                <option value="pracownik_dzekanatu">pracownik dziekanatu</option>
+            </select>
 
-        <label><b>nazwisko</b></label>
-        <input type="text" placeholder="Podaj Nazwisko" name="last-name" required>
+            <label><b>imie</b></label>
+            <input type="text" placeholder="Podaj Imie" name="name" required>
 
-        <label><b>hasło</b></label>
-        <input type="password" placeholder="Podaj hasło" name="password" required>
+            <label><b>nazwisko</b></label>
+            <input type="text" placeholder="Podaj Nazwisko" name="last-name" required>
 
-        <label><b>powtórz hasło</b></label>
-        <input type="password" placeholder="powtórz hasło" name="password-repeat" required>
+            <label><b>hasło</b></label>
+            <input type="password" placeholder="Podaj hasło" name="password" required>
+
+            <label><b>powtórz hasło</b></label>
+            <input type="password" placeholder="powtórz hasło" name="password-repeat" required>
+
+            <input type="submit">
         </form>
     </div>
     <div class="container signin">

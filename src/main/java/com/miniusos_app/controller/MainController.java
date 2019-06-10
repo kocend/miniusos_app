@@ -2,6 +2,7 @@ package com.miniusos_app.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,11 +17,38 @@ public class MainController {
         return m;
     }
 
+    @RequestMapping(value = "/hello",method = RequestMethod.GET)
+    public ModelAndView getHello(){
+        ModelAndView m = new ModelAndView();
+        m.setViewName("hello");
+        return m;
+    }
+
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public ModelAndView getLoginForm(){
+        ModelAndView m = new ModelAndView();
+        m.setViewName("login");
+        return m;
+    }
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public ModelAndView getRegistrationForm(){
         ModelAndView m = new ModelAndView();
         m.setViewName("registration");
         return m;
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public String Register(
+                           @RequestParam(value = "name",required = true) String name,
+                           @RequestParam(value = "last-name",required = true) String lastName,
+                           @RequestParam(value = "password",required = true) String password,
+                           @RequestParam(value = "password-repeat",required = true) String passwordRepeat){
+//@RequestParam(value = "account-type",required = true) String accountType,
+
+        System.out.print(" "+name+" "+lastName+" "+password+" "+passwordRepeat);
+
+        return " "+name+" "+lastName+" "+password+" "+passwordRepeat;
     }
 
     @RequestMapping(value = "/student", method = RequestMethod.GET)
