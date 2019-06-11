@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Formularz grupy</title>
 </head>
 <body>
+<div class="grupaForm">
+    <h1>Grupa</h1>
+    <p>formularz grupy</p>
+    <hr>
+    <form action="/pracownik_dziekanatu/nowa_grupa", method="post">
+        <label>nazwa</label>
+        <input type="text" placeholder="nazwa grupy" name="nazwa" th:value="${nazwa}" required >
+        </br>
+        <label>numer id</label>
+        <input type="text" placeholder="numer id" name="id" th:value="${numer_id}" required >
+        </br>
+        <label>dzien tygodnia</label>
+        <select name="dzien_tygodnia">
+            <option value="poniedziałek">poniedziałek</option>
+            <option value="wtorek">wtorek</option>
+            <option value="środa">środa</option>
+            <option value="czwartek">czwartek</option>
+            <option value="piątek">piątek</option>
+            <option value="sobota">sobota</option>
+            <option value="niedziela">niedziela</option>
+        </select>
+        </br>
+        <label>godzina rozpoczecia</label>
+        <input type="text" placeholder="godzina rozpoczecia" name="godzina_rozpoczecia" th:value="${godzina_rozpoczecia}" required >
+        </br>
+        <label>godzina zakonczenia</label>
+        <input type="text" placeholder="godzina zakonczenia" name="godzina_zakonczenia" th:value="${godzina_zakonczenia}" required >
+        </br>
+        <label>limit miejsc</label>
+        <input type="text" placeholder="limit miejsc" name="limit_miejsc" th:value="${limit_miejsc}" required >
+        </br>
+        <label>imie koordynatora</label>
+        <input type="text" placeholder="imie koordynatora" name="imie_koordynatora" th:value="${imie_koordynatora}" required >
+        </br>
+        <label>nazwisko koordynatora</label>
+        <input type="text" placeholder="nazwisko koordynatora" name="nazwisko_koordynatora" th:value="${nazwisko_koordynatora}" required >
+        </br>
 
+        <input type="submit" name="apply" value="zatwierdź">
+    </form>
+</div>
 </body>
 </html>

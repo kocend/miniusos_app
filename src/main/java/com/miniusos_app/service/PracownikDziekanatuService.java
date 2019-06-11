@@ -33,6 +33,11 @@ public class PracownikDziekanatuService {
         return grupy;
     }
 
+    public int addGroup(Grupa g){
+        grupy.add(g);
+        return 1;
+    }
+
     public int deleteFromGroup(Integer id_grupy){
 
         boolean b =grupy.remove(id_grupy);

@@ -31,18 +31,16 @@ This is site for pracownikDZekanatu
         <td th:text="${grupa.koordynator.getImie()}">
         <td th:text="${grupa.koordynator.getNazwisko()}"></td>
         <td>
-            <input th:type="radio" th:name="option" th:value="${grupa.getId_grupy()}" th:form="deleteform">
+            <input class="abcd" th:type="radio" th:name="option" th:value="${grupa.getId_grupy()}" th:form="putDeleteForm" required>
         </td>
     </tr>
     <tr>
         <form action="/pracownik_dziekanatu", method="post" id="postform">
             <input type="submit" name="new" value="nowa grupa">
         </form>
-        <form th:action="@{/pracownik_dziekanatu}" th:method="put" th:id="putform">
-            <input type="submit" name="edit" value="edytuj zaznaczoną grupę">
-        </form>
-        <form th:action="@{/pracownik_dziekanatu}" th:method="delete" th:id="deleteform">
-            <input type="submit" name="delete" value="usuń zaznaczoną grupę">
+        <form th:action="@{/pracownik_dziekanatu}" th:method="put" th:id="putDeleteForm">
+            <input type="submit" name="chosenButton" value="edytuj zaznaczoną grupę">
+            <input type="submit" name="chosenButton" value="usuń zaznaczoną grupę">
         </form>
     </tr>
 </table>
