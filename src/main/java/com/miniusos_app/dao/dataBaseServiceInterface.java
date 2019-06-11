@@ -21,7 +21,7 @@ public interface dataBaseServiceInterface {
 
     //dla koordynatora
     public List<Grupa> pobierzGrupyKoordynatora(Koordynator k);
-    public int magicznyGuzikWystaw5tymCoNieMajaOceny(Grupa g);
+    public int magicznyGuzikWystaw5tymCoNieMajaOceny(Integer id_grupy);
     public int wystawOcene(Integer id_grupy, Student s, Integer ocena);
     public int ocenKolokwiumI(Integer id_grupy,Student s,Integer punkty);
     public int ocenKolokwiumII(Integer id_grupy,Student s,Integer punkty);
