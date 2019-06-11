@@ -36,6 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/pracownik_dziekanatu*").hasRole("PRACOWNIK_DZIEKANATU")
                 .antMatchers("/","/registration","/hello","/login").permitAll()
                 .and()
+                .formLogin()
+                .loginPage("/login")
+                .and()
                 .httpBasic()
                 .and()
                 .csrf().disable();

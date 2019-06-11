@@ -8,21 +8,20 @@
 <body>
 <div class="loginForm">
     <form action="/login" method="POST">
-        <select>
-            <option value="student">student</option>
-            <option value="prowadzacy">prowadzący</option>
-            <option value="pracownik_dzekanatu">pracownik dziekanatu</option>
-        </select>
         </br>
-        login
-        <input type="text" name="username"/>
+        <label><b>login</b></label>
+        <input type="text" placeholder="Podaj login" name="username" required>
         </br>
-        hasło
-        <input type="password" name="password"/>
+        <label><b>hasło</b></label>
+        <input type="password" placeholder="Podaj hasło" name="password" required>
         </br>
         <input type="submit" name="submit"/>
         </br>
     </form>
+</div>
+
+<div class="signin">
+    <p>nie posiadasz konta? <a href="/registration">zarejestruj się</a>.</p>
 </div>
 </body>
 </html>

@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../static/css/registration.css">
     </head>
     <body>
-    <div class="container">
+    <div class="registrationForm">
         <h1>Rejestracja</h1>
         <p>Wypełnij formularz aby stworzyć konto</p>
         <hr>
@@ -20,24 +20,25 @@
                 <option value="KOORDYNATOR">koordynator</option>
                 <option value="PRACOWNIK_DZIEKANATU">pracownik dziekanatu</option>
             </select>
-
+            </br>
             <label><b>imie</b></label>
             <input type="text" placeholder="Podaj Imie" name="name" required>
-
+            </br>
             <label><b>nazwisko</b></label>
             <input type="text" placeholder="Podaj Nazwisko" name="last-name" required>
-
+            </br>
             <label><b>hasło</b></label>
             <input type="password" placeholder="Podaj hasło" name="password" required>
-
+            </br>
             <label><b>powtórz hasło</b></label>
             <input type="password" placeholder="powtórz hasło" name="password-repeat" required>
-
+            </br>
             <input type="submit">
+            </br>
         </form>
     </div>
-    <div class="container signin">
-        <p>posiadasz już konto? <a href="/login">Sign in</a>.</p>
+    <div class="signup">
+        <p>posiadasz już konto? <a href="/login">zaloguj się</a>.</p>
     </div>
     </body>
 </html>
