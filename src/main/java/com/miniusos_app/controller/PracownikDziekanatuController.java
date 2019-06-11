@@ -38,8 +38,8 @@ public class PracownikDziekanatuController {
     }
 
     @RequestMapping(value = "/pracownik_dziekanatu", method = RequestMethod.DELETE)
-    public ModelAndView deleteGroup(@RequestParam(value = "option") Integer id) {
-        pracownikDziekanatuService.deleteFromGroup(id);
+    public ModelAndView deleteGroup(@RequestParam(value = "option") Integer id_grupy) {
+        pracownikDziekanatuService.deleteFromGroup(id_grupy);
 
         return getPracownikDziekanatuForm();
     }

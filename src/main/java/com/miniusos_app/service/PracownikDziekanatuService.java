@@ -34,6 +34,7 @@ public class PracownikDziekanatuService {
     }
 
     public int deleteFromGroup(Integer id_grupy){
+
         boolean b =grupy.remove(id_grupy);
         return 1;
     }

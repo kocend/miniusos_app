@@ -27,7 +27,7 @@ public interface dataBaseServiceInterface {
     public int ocenKolokwiumII(Integer id_grupy,Student s,Integer punkty);
 
     //dla studenta
-    public int zapiszDoGrupy(Student s, Grupa g);
+    public int zapiszDoGrupy(Student s, Integer id_grupy);
     public int pobierzMojeWyniki(Student s);
 
 }
