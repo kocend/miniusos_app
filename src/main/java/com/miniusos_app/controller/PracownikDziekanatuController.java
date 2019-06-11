@@ -32,24 +32,12 @@ public class PracownikDziekanatuController {
         return m;
     }
 
-
-    ////TODO
-    @RequestMapping(value = "/pracownik_dziekanatu/putordelete", method = RequestMethod.POST)
-    public ModelAndView redirectToProperMethod(@RequestParam(value = "chosenButton") String chosenButton) {
-        if(chosenButton.equals("edytuj zaznaczoną grupę"))
-            return updateGroup();
-        else if(chosenButton.equals("usuń zaznaczoną grupę"))
-                return deleteGroup(1);
-
-        ModelAndView m = new ModelAndView();
-        m.setViewName("pracownik_dziekanatu");
-        return m;
-    }
-
     @RequestMapping(value = "/pracownik_dziekanatu", method = RequestMethod.PUT)
-    public ModelAndView updateGroup() {
+    public ModelAndView updateGroup(@RequestParam(value = "option") Integer id_grupy) {
         ModelAndView m = new ModelAndView();
-        m.setViewName("pracownik_dziekanatu");
+        m.setViewName("grupaFormularz");
+        Grupa g = pracownikDziekanatuService.getGroupByID(id_grupy);
+        //TODO wstrzyknięcie danych do formularza
         return m;
     }
 

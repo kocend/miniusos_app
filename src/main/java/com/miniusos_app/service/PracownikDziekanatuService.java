@@ -5,6 +5,7 @@ import com.miniusos_app.model.Grupa;
 import com.miniusos_app.model.Koordynator;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,6 +37,11 @@ public class PracownikDziekanatuService {
     public int addGroup(Grupa g){
         grupy.add(g);
         return 1;
+    }
+
+    public Grupa getGroupByID(Integer id_grupy){
+        //WARNING tylko przykład normalnie powoduje błędy
+        return grupy.get(id_grupy);
     }
 
     public int deleteFromGroup(Integer id_grupy){

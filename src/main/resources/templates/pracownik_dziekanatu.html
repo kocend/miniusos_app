@@ -5,10 +5,10 @@
     <title>PracownikDziekanatu</title>
 </head>
 <body>
-This is site for pracownikDZekanatu
-!!!
 
 <div th:if="${not #lists.isEmpty(grupy)}">
+    <h1>Menadżer pracownika dziekanatu</h1>
+    <hr>
 <table>
     <tr>
         <th>nazwa</th>
@@ -19,7 +19,8 @@ This is site for pracownikDZekanatu
         <th>limit miejsc</th>
         <th>imie koordynatora</th>
         <th>nazwisko koordynatora</th>
-        <th>wybór grupy</th>
+        <th>edytuj</th>
+        <th>usuń</th>
     </tr>
     <tr th:each="grupa : ${grupy}">
         <td th:text="${grupa.getNazwaGrupy()}"></td>
@@ -31,17 +32,24 @@ This is site for pracownikDZekanatu
         <td th:text="${grupa.koordynator.getImie()}">
         <td th:text="${grupa.koordynator.getNazwisko()}"></td>
         <td>
-            <input class="abcd" th:type="radio" th:name="option" th:value="${grupa.getId_grupy()}" th:form="putDeleteForm" required>
+            <input th:type="radio" th:name="option" th:value="${grupa.getId_grupy()}" th:form="putForm" required>
+        </td>
+        <td>
+            <input th:type="radio" th:name="option" th:value="${grupa.getId_grupy()}" th:form="deleteForm" required>
         </td>
     </tr>
     <tr>
-        <form action="/pracownik_dziekanatu", method="post" id="postform">
-            <input type="submit" name="new" value="nowa grupa">
-        </form>
-        <form th:action="@{/pracownik_dziekanatu}" th:method="put" th:id="putDeleteForm">
-            <input type="submit" name="chosenButton" value="edytuj zaznaczoną grupę">
-            <input type="submit" name="chosenButton" value="usuń zaznaczoną grupę">
-        </form>
+        <td>
+            <form action="/pracownik_dziekanatu", method="post" id="postForm">
+                <input type="submit" name="new" value="nowa grupa">
+            </form>
+            <form th:action="@{/pracownik_dziekanatu}" th:method="put" th:id="putForm">
+                <input type="submit" name="update" value="edytuj zaznaczoną grupę">
+            </form>
+            <form th:action="@{/pracownik_dziekanatu}" th:method="delete" th:id="deleteForm">
+                <input type="submit" name="delete" value="usuń zaznaczoną grupę">
+            </form>
+        </td>
     </tr>
 </table>
 
