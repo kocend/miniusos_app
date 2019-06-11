@@ -3,11 +3,14 @@ package com.miniusos_app.dao;
 import com.miniusos_app.model.Grupa;
 import com.miniusos_app.model.Koordynator;
 import com.miniusos_app.model.Student;
+import org.omg.CORBA.INTERNAL;
+
+import java.util.List;
 
 public interface dataBaseServiceInterface {
 
     //dla wszystkich
-    public Grupa pobierzWszystkieGrupy();
+    public List<Grupa> pobierzWszystkieGrupy();
     public Grupa pobierzGrupePoID(Integer id_grupy);
 
     //dla pracownika_dziekanatu
@@ -17,11 +20,11 @@ public interface dataBaseServiceInterface {
     public int pobierzWszystkichKoordynatorow();
 
     //dla koordynatora
-    public int pobierzGrupyKoordynatora(Koordynator k);
-    public int magicznyGuzikWystaw5tymCoNieMajaOceny();
-    public int wystawOcene(Student s,Integer ocena);
-    public int ocenKolokwiumI(Student s,Integer punkty);
-    public int ocenKolokwiumII(Student s,Integer punkty);
+    public List<Grupa> pobierzGrupyKoordynatora(Koordynator k);
+    public int magicznyGuzikWystaw5tymCoNieMajaOceny(Grupa g);
+    public int wystawOcene(Integer id_grupy, Student s, Integer ocena);
+    public int ocenKolokwiumI(Integer id_grupy,Student s,Integer punkty);
+    public int ocenKolokwiumII(Integer id_grupy,Student s,Integer punkty);
 
     //dla studenta
     public int zapiszDoGrupy(Student s, Grupa g);
