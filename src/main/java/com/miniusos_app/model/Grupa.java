@@ -1,33 +1,36 @@
 package com.miniusos_app.model;
 
-import java.io.Serializable;
-import java.util.LinkedList;
 
 public class Grupa{
-    /**
-     *
-     */
-    private Integer numer;
+
+    private String nazwaGrupy;
+    private Integer id_grupy;
     private DZIEN_TYGODNIA dzienTygodnia;
     private String godzinaRozpoczecia;
     private String godzinaZakonczenia;
-    private LinkedList<Student> listaStudentow;
+    private Integer limitMiejsc;
+    private Koordynator koordynator;
 
-    public Grupa(Integer numer, DZIEN_TYGODNIA dzienTygodnia, String godzinaRozpoczecia, String godzinaZakonczenia) {
-        super();
-        this.numer = numer;
+
+    public Grupa(String nazwaGrupy, Integer id, DZIEN_TYGODNIA dzienTygodnia,
+                 String godzinaRozpoczecia, String godzinaZakonczenia,
+                 Integer limitMiejsc, Koordynator koordynator) {
+
+        this.setNazwaGrupy(nazwaGrupy);
+        this.setId_grupy(id);
         this.dzienTygodnia = dzienTygodnia;
         this.godzinaRozpoczecia = godzinaRozpoczecia;
         this.godzinaZakonczenia = godzinaZakonczenia;
-        listaStudentow = new LinkedList<>();
+        this.setLimitMiejsc(limitMiejsc);
+        this.setKoordynator(koordynator);
     }
 
     public Integer getNumer() {
-        return numer;
+        return getId_grupy();
     }
 
-    public void setNumer(Integer numer) {
-        this.numer = numer;
+    public void setNumer(Integer id) {
+        this.setId_grupy(id);
     }
 
     public DZIEN_TYGODNIA getDzienTygodnia() {
@@ -54,12 +57,41 @@ public class Grupa{
         this.godzinaZakonczenia = godzinaZakonczenia;
     }
 
-    public LinkedList<Student> getListaStudentow() {
-        return listaStudentow;
+    public String getNazwaGrupy() {
+        return nazwaGrupy;
+    }
+
+    public void setNazwaGrupy(String nazwaGrupy) {
+        this.nazwaGrupy = nazwaGrupy;
+    }
+
+    public Integer getId_grupy() {
+        return id_grupy;
+    }
+
+    public void setId_grupy(Integer id_grupy) {
+        this.id_grupy = id_grupy;
+    }
+
+    public Integer getLimitMiejsc() {
+        return limitMiejsc;
+    }
+
+    public void setLimitMiejsc(Integer limitMiejsc) {
+        this.limitMiejsc = limitMiejsc;
+    }
+
+    public Koordynator getKoordynator() {
+        return koordynator;
+    }
+
+    public void setKoordynator(Koordynator koordynator) {
+        this.koordynator = koordynator;
     }
 
     @Override
     public String toString() {
-        return "Grupa " + numer + " " + dzienTygodnia.toString()+" "+godzinaRozpoczecia+"-"+godzinaZakonczenia;
+        return "Grupa " + getId_grupy() + " " + dzienTygodnia.toString()+" "+godzinaRozpoczecia+"-"+godzinaZakonczenia;
     }
+
 }

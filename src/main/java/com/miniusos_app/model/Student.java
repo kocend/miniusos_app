@@ -3,9 +3,7 @@ package com.miniusos_app.model;
 
 
 public class Student {
-    /**
-     *
-     */
+
     private String imie;
     private String nazwisko;
     private Integer numerUSOS;
