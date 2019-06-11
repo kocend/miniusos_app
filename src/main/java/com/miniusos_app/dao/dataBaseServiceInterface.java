@@ -3,7 +3,7 @@ package com.miniusos_app.dao;
 import com.miniusos_app.model.Grupa;
 import com.miniusos_app.model.Koordynator;
 import com.miniusos_app.model.Student;
-import org.omg.CORBA.INTERNAL;
+
 
 import java.util.List;
 

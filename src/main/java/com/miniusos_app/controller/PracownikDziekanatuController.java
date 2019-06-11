@@ -1,10 +1,11 @@
 package com.miniusos_app.controller;
 
+import com.miniusos_app.model.Grupa;
 import com.miniusos_app.service.PracownikDziekanatuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,10 +38,10 @@ public class PracownikDziekanatuController {
     }
 
     @RequestMapping(value = "/pracownik_dziekanatu", method = RequestMethod.DELETE)
-    public ModelAndView deleteGroup() {
-        ModelAndView m = new ModelAndView();
-        m.setViewName("pracownik_dziekanatu");
-        return m;
+    public ModelAndView deleteGroup(@RequestParam(value = "option") Integer id) {
+        pracownikDziekanatuService.deleteFromGroup(id);
+
+        return getPracownikDziekanatuForm();
     }
 
 }

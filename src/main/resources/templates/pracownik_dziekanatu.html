@@ -19,6 +19,7 @@ This is site for pracownikDZekanatu
         <th>limit miejsc</th>
         <th>imie koordynatora</th>
         <th>nazwisko koordynatora</th>
+        <th>wybór grupy</th>
     </tr>
     <tr th:each="grupa : ${grupy}">
         <td th:text="${grupa.getNazwaGrupy()}"></td>
@@ -29,9 +30,23 @@ This is site for pracownikDZekanatu
         <td th:text="${grupa.getLimitMiejsc()}"></td>
         <td th:text="${grupa.koordynator.getImie()}">
         <td th:text="${grupa.koordynator.getNazwisko()}"></td>
-        <td><input type="checkbox" name="register">zarejestruj</td>
+        <td>
+            <input th:type="radio" th:name="option" th:value="${grupa.getId_grupy()}" th:form="deleteform">
+        </td>
+    </tr>
+    <tr>
+        <form action="/pracownik_dziekanatu", method="post" id="postform">
+            <input type="submit" name="new" value="nowa grupa">
+        </form>
+        <form th:action="@{/pracownik_dziekanatu}" th:method="put" th:id="putform">
+            <input type="submit" name="edit" value="edytuj zaznaczoną grupę">
+        </form>
+        <form th:action="@{/pracownik_dziekanatu}" th:method="delete" th:id="deleteform">
+            <input type="submit" name="delete" value="usuń zaznaczoną grupę">
+        </form>
     </tr>
 </table>
+
 </div>
 </body>
 </html>
