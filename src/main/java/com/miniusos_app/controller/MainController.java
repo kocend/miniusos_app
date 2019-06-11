@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.sql.DataSource;
 
 
 @RestController
@@ -65,27 +64,6 @@ public class MainController {
             return "account already exists";
         else
             return "something get wrong,";
-    }
-
-    @RequestMapping(value = "/student", method = RequestMethod.GET)
-    public ModelAndView getStudentForm() {
-        ModelAndView m = new ModelAndView();
-        m.setViewName("student");
-        return m;
-    }
-
-    @RequestMapping(value = "/koordynator", method = RequestMethod.GET)
-    public ModelAndView getKoordynatorForm() {
-        ModelAndView m = new ModelAndView();
-        m.setViewName("koordynator");
-        return m;
-    }
-
-    @RequestMapping(value = "/pracownik_dziekanatu", method = RequestMethod.GET)
-    public ModelAndView getPracownikDziekanatuForm() {
-        ModelAndView m = new ModelAndView();
-        m.setViewName("pracownik_dziekanatu");
-        return m;
     }
 
 }

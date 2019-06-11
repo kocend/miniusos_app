@@ -1,11 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerFragment">
     <meta charset="UTF-8">
     <title>PracownikDziekanatu</title>
 </head>
 <body>
 This is site for pracownikDZekanatu
 !!!
+
+<div th:if="${not #lists.isEmpty(grupy)}">
+<table>
+    <tr>
+        <th>nazwa</th>
+        <th>numer id</th>
+        <th>dzien tygodnia</th>
+        <th>godzina rozpoczecia</th>
+        <th>godzina zakonczenia</th>
+        <th>limit miejsc</th>
+        <th>imie koordynatora</th>
+        <th>nazwisko koordynatora</th>
+    </tr>
+    <tr th:each="grupa : ${grupy}">
+        <td th:text="${grupa.getNazwaGrupy()}"></td>
+        <td th:text="${grupa.getId_grupy()}"></td>
+        <td th:text="${grupa.getDzienTygodnia()}"></td>
+        <td th:text="${grupa.getGodzinaRozpoczecia()}"></td>
+        <td th:text="${grupa.getGodzinaZakonczenia()}"></td>
+        <td th:text="${grupa.getLimitMiejsc()}"></td>
+        <td th:text="${grupa.koordynator.getImie()}">
+        <td th:text="${grupa.koordynator.getNazwisko()}"></td>
+        <td><input type="checkbox" name="register">zarejestruj</td>
+    </tr>
+</table>
+</div>
 </body>
 </html>
