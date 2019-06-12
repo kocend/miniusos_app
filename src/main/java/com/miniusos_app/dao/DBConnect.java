@@ -254,15 +254,7 @@ public class DBConnect implements dataBaseServiceInterface {
 			String imie = rs.getString("imie");
 			String nazwisko = rs.getString("nazwisko");
 //			Integer nrUSOS = rs.getInt("nrUSOS");
-			Double ocenaKoncowa = rs.getDouble("ocena_koncowa");
-			Integer kolokwium1 = rs.getInt("kolokwium1_pkt");
-			Integer kolokwium2 = rs.getInt("kolokwium2_pkt");
-			Integer sumaPkt = rs.getInt("suma_pkt");
 			Student s = new Student(imie, nazwisko, id);
-			s.setPunktyKolokwiumI(kolokwium1);
-			s.setPunktyKolokwiumII(kolokwium2);
-			s.setOcenaKoncowa(ocenaKoncowa);
-			s.setSumaPunktow(sumaPkt);
 			st.close();
 			return s;
 		} catch (SQLException e) {
@@ -276,7 +268,6 @@ public class DBConnect implements dataBaseServiceInterface {
 		int odp = -1;
 		try {
 			st = con.createStatement();
-			odp = st.executeUpdate("UPDATE studenci SET ocena_koncowa=5 WHERE ocena_koncowa IS NULL");
 			st.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
