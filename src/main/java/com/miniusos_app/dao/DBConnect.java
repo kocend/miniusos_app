@@ -284,6 +284,25 @@ public class DBConnect implements dataBaseServiceInterface {
 		}
 		return odp;
 	}
+	
+	 public int wystawOcene(Integer id_grupy, Integer id_studenta,
+             Double ocenaKoncowa,
+             Integer kolokwiumI, Integer kolokwiumII) {
+		 int odp = -1;
+			try {
+				st = con.createStatement();
+				odp = st.executeUpdate("UPDATE przynaleznosc SET ocena_koncowa="+ocenaKoncowa
+						+", punkty_kolokwium1="+kolokwiumI
+						+", punkty_kolokwium2"+kolokwiumII
+						+" WHERE id_gr="+id_grupy
+						+" AND nrUSOS="+id_studenta);
+				st.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return odp;
+	 }
 
 //    @Override
 //    public List<Koordynator> pobierzWszystkichKoordynatorow() {
