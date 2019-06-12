@@ -58,12 +58,10 @@ public class MainController {
         else
             return "passwords are not the same";
 
-        if(returnedValue==1)
-            return "you have been successfully registered";
-        else if(returnedValue==2)
+        if(returnedValue==2)
             return "account already exists";
         else
-            return "something get wrong,";
+            return "everything is allright your index: "+returnedValue;
     }
 
 }

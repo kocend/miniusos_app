@@ -59,7 +59,13 @@ public class KoordynatorService {
         return 1;
     }
 
+    public int magic5(Integer id_koordynatora){
+
+        return 1;
+    }
+
     public List<GrupaStudent> getAllStudents(Integer id_koordynatora) {
         return listaGrup_I_studentow;
     }
+
 }

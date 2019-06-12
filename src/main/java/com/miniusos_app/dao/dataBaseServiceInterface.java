@@ -24,7 +24,7 @@ public interface dataBaseServiceInterface {
     //dla koordynatora
     public List<GrupaStudent> pobierzGrupyIStudentowKoordynatora(Integer id_koordynatora);
     public Student pobierzStudentaPoID(Integer id);
-    public int magicznyGuzikWystaw5tymCoNieMajaOceny(Integer id_grupy);
+    public int magicznyGuzikWystaw5tymCoNieMajaOceny(Integer id_koordynatora);
     public int wystawOcene(Integer id_grupy, Integer id_studenta,
                            Double ocenaKoncowa,
                            Integer kolokwiumI, Integer kolokwiumII);

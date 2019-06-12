@@ -19,7 +19,7 @@
         </tr>
         <tr th:each="lista : ${lista_grup}">
             <td th:text="${lista.getNazwaGrupy()}"></td>
-            <td th:name="id" th:text="${lista.getIdGrupy()}"></td>
+            <td th:text="${lista.getIdGrupy()}"></td>
             <td th:text="${lista.getImie()}"></td>
             <td th:text="${lista.getNazwisko()}"></td>
             <td th:text="${lista.getIndex()}"></td>
@@ -29,7 +29,7 @@
         </tr>
         <tr>
             <td>
-                <form action="/koordynator/magiczne5", method="post" id="postForm">
+                <form th:action="@{/koordynator/magiczne5}", th:method="put">
                     <input type="submit" name="magiczne5" value="magiczny przycisk do wystawienia 5">
                 </form>
                 <form th:action="@{/koordynator/wystaw_oceny}" th:method="get" th:id="getForm">
@@ -38,7 +38,6 @@
             </td>
         </tr>
     </table>
-
 </div>
 </body>
 </html>
