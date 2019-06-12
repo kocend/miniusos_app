@@ -1,5 +1,6 @@
 package com.miniusos_app.dao;
 
+import com.fasterxml.jackson.annotation.ObjectIdGenerator.IdKey;
 import com.miniusos_app.dao.dataBaseServiceInterface;
 import com.miniusos_app.model.DZIEN_TYGODNIA;
 import com.miniusos_app.model.Grupa;
@@ -42,6 +43,7 @@ public class DBConnect implements dataBaseServiceInterface {
 				Integer limitMiejsc = new Integer(rs.getInt("limit_miejsc"));
 				String imieKoordynatora = new String(rs.getString("imie"));
 				String nazwiskoKoordynatora = new String(rs.getString("nazwisko"));
+				Integer idKoordynatora = new Integer(rs.getInt("id_k"));
 				
 				DZIEN_TYGODNIA dzien = DZIEN_TYGODNIA.poniedziałek;
 				switch(dzienTygodnia.toLowerCase()) {
@@ -68,7 +70,7 @@ public class DBConnect implements dataBaseServiceInterface {
 					break;
 				}
 				
-				Koordynator koordynator = new Koordynator(imieKoordynatora, nazwiskoKoordynatora);
+				Koordynator koordynator = new Koordynator(imieKoordynatora, nazwiskoKoordynatora, idKoordynatora);
 				Grupa grupa = new Grupa(nazwaGrupy, idGrupy, dzien, godzinaRozpoczecia, 
 						godzinaZakonczenia, limitMiejsc, koordynator);
 				lista.add(grupa);
@@ -94,6 +96,7 @@ public class DBConnect implements dataBaseServiceInterface {
 			Integer limitMiejsc = new Integer(rs.getInt("limit_miejsc"));
 			String imieKoordynatora = new String(rs.getString("imie"));
 			String nazwiskoKoordynatora = new String(rs.getString("nazwisko"));
+			Integer idKoordynatora = new Integer(rs.getInt("id_k"));
 			
 			DZIEN_TYGODNIA dzien = DZIEN_TYGODNIA.poniedziałek;
 			switch(dzienTygodnia.toLowerCase()) {
@@ -120,7 +123,7 @@ public class DBConnect implements dataBaseServiceInterface {
 				break;
 			}
 			
-			Koordynator koordynator = new Koordynator(imieKoordynatora, nazwiskoKoordynatora);
+			Koordynator koordynator = new Koordynator(imieKoordynatora, nazwiskoKoordynatora, idKoordynatora);
 			Grupa grupa = new Grupa(nazwaGrupy, idGrupy, dzien, godzinaRozpoczecia, 
 					godzinaZakonczenia, limitMiejsc, koordynator);
 			st.close();
@@ -133,6 +136,7 @@ public class DBConnect implements dataBaseServiceInterface {
 	}
 	
 	public int dodajGrupe(Grupa g) {
+		int odp = -1;
 		try {
 			st = con.createStatement();
 			String nazwaGrupy = g.getNazwaGrupy();
@@ -142,14 +146,62 @@ public class DBConnect implements dataBaseServiceInterface {
 			String godzinaZakonczenia = g.getGodzinaZakonczenia();
 			Integer limitMiejsc = g.getLimitMiejsc();
 			Koordynator koordynator = g.getKoordynator();
+			Integer idKoordynatora = koordynator.getId();
 //			String imie = koordynator.getImie();
 //			String nazwisko = koordynator.getNazwisko();
 			
-			rs = st.executeUpdate("");
+			odp = st.executeUpdate("INSERT INTO grupy(id_gr, nazwa_grupy, dzien_tygodnia, godz_rozpoczecia,"
+					+ "godz_zakonczenia, limit_miejsc, id_k) VALUES("
+					+idGrupy+","+nazwaGrupy+","+dzien+","+godzinaRozpoczecia+","+godzinaZakonczenia+","+limitMiejsc+","
+					+idKoordynatora+")");
+			st.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		return odp;
 	}
+	
+	public int usunGrupePoID(Integer id_grupy) {
+		int odp = -1;
+		try {
+			st = con.createStatement();
+			st.executeUpdate("DELETE FROM przynaleznosc WHERE id_gr="+id_grupy);
+			odp = st.executeUpdate("DELETE FROM grupy WHERE id_gr="+id_grupy);
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return odp;
+	}
+	
+	public int zaktualizujGrupePoID(Integer id_grupy, Grupa g) {
+		int odp = -1;
+		try {
+			st = con.createStatement();
+			String nazwaGrupy = g.getNazwaGrupy();
+			DZIEN_TYGODNIA dzien = g.getDzienTygodnia();
+			String godzinaRozpoczecia = g.getGodzinaRozpoczecia();
+			String godzinaZakonczenia = g.getGodzinaZakonczenia();
+			Integer limitMiejsc = g.getLimitMiejsc();
+			Koordynator koordynator = g.getKoordynator();
+			Integer idKoordynatora = koordynator.getId();
+			
+			odp = st.executeUpdate("UPDATE grupy SET "
+					+" nazwa_grupy=\""+nazwaGrupy+"\" "
+					+ " dzien_tygodnia=\""+dzien.toString()+"\" "
+					+ "godz_rozpoczecia=\""+godzinaRozpoczecia+"\" "
+					+ "godz_zakonczenia=\""+godzinaZakonczenia+"\" "
+					+ "limit_miejsc="+limitMiejsc.toString()
+					+ " id_k="+idKoordynatora.toString()
+					+" WHERE id_gr="+id_grupy);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return odp;
+	}
+	
+	
 }
