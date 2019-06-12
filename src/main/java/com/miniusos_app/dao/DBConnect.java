@@ -254,7 +254,15 @@ public class DBConnect implements dataBaseServiceInterface {
 			String imie = rs.getString("imie");
 			String nazwisko = rs.getString("nazwisko");
 //			Integer nrUSOS = rs.getInt("nrUSOS");
+//			Double ocenaKoncowa = rs.getDouble("ocena_koncowa");
+//			Integer kolokwium1 = rs.getInt("kolokwium1_pkt");
+//			Integer kolokwium2 = rs.getInt("kolokwium2_pkt");
+//			Integer sumaPkt = rs.getInt("suma_pkt");
 			Student s = new Student(imie, nazwisko, id);
+//			s.setPunktyKolokwiumI(kolokwium1);
+//			s.setPunktyKolokwiumII(kolokwium2);
+//			s.setOcenaKoncowa(ocenaKoncowa);
+//			s.setSumaPunktow(sumaPkt);
 			st.close();
 			return s;
 		} catch (SQLException e) {
@@ -268,6 +276,7 @@ public class DBConnect implements dataBaseServiceInterface {
 		int odp = -1;
 		try {
 			st = con.createStatement();
+			odp = st.executeUpdate("UPDATE przynaleznosc SET ocena_koncowa=5 WHERE ocena_koncowa IS NULL");
 			st.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -293,6 +302,45 @@ public class DBConnect implements dataBaseServiceInterface {
 				e.printStackTrace();
 			}
 			return odp;
+	 }
+	 
+	 public int zapiszDoGrupy(Student s, Integer id_grupy) {
+		 int odp = -1;
+			try {
+				st = con.createStatement();
+				odp = st.executeUpdate("INSERT INTO przynaleznosc (nrUSOS, id_gr) VALUES ("
+						+ s.getNumerUSOS()+","+id_grupy+")");
+				st.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return odp;
+	 }
+	 
+	 public List<Wyniki> pobierzMojeWyniki(Student s){
+		 List<Wyniki> lista = new ArrayList<Wyniki>();
+			try {
+				st = con.createStatement();
+				rs = st.executeQuery("SELECT g.nazwa_grupy, p.ocena_koncowa, p.punkty_kolokwium1, p.punkty_kolokwium2\r\n" + 
+						"FROM przynależność p JOIN grupy g ON p.id_gr=g.id_gr\r\n" + 
+						"WHERE p.nrUSOS="+ s.getNumerUSOS());
+				while(rs.next()) {
+					String nazwaGrupy = rs.getString("nazwa_grupy");
+					Double ocenaKoncowa = rs.getDouble("ocena_koncowa");
+					Integer kolokwium1 = rs.getInt("punkty_kolokwium1");
+					Integer kolokwium2 = rs.getInt("punkty_kolokwium2");
+					Wyniki w = new Wyniki(nazwaGrupy);
+					w.setKolokwium1(kolokwium1);
+					w.setKolokwium2(kolokwium2);
+					w.setOcenaKoncowa(ocenaKoncowa);
+					lista.add(w);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return lista;
 	 }
 
 //    @Override
