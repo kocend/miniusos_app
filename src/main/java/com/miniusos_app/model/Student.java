@@ -7,18 +7,11 @@ public class Student {
     private String imie;
     private String nazwisko;
     private Integer numerUSOS;
-    private Double ocenaKoncowa;
-    private Integer punktyKolokwiumI;
-    private Integer punktyKolokwiumII;
-    private Integer sumaPunktow;
 
     public Student(String imie, String nazwisko, Integer numerUsos) {
         this.imie=imie;
         this.nazwisko=nazwisko;
         this.numerUSOS=numerUsos;
-        punktyKolokwiumI=0;
-        punktyKolokwiumII=0;
-        setOcenaKoncowa(0.0);
        // przeliczPunkty();
     }
 
@@ -56,38 +49,6 @@ public class Student {
     }
     public void setNumerUSOS(Integer numerUSOS) {
         this.numerUSOS = numerUSOS;
-    }
-    public Double getOcenaKoncowa() {
-        return ocenaKoncowa;
-    }
-    public Integer getPunktyKolokwiumI() {
-        return punktyKolokwiumI;
-    }
-    public void setPunktyKolokwiumI(Integer punktyKolokwiumI) {
-        //if(punktyKolokwiumI>=0&&punktyKolokwiumI<=50) {
-            this.punktyKolokwiumI = punktyKolokwiumI;
-            //przeliczPunkty();
-        //}
-    }
-    public Integer getPunktyKolokwiumII() {
-        return punktyKolokwiumII;
-    }
-    public void setPunktyKolokwiumII(Integer punktyKolokwiumII) {
-        //if(punktyKolokwiumII>=0&&punktyKolokwiumII<=50) {
-            this.punktyKolokwiumII = punktyKolokwiumII;
-           // przeliczPunkty();
-        //}
-    }
-    public Integer getSumaPunktow() {
-        return sumaPunktow;
-    }
-    
-    public void setOcenaKoncowa(Double ocenaKoncowa) {
-    	this.ocenaKoncowa = ocenaKoncowa;
-    }
-    
-    public void setSumaPunktow(Integer suma) {
-    	this.sumaPunktow = suma;
     }
 
     @Override
