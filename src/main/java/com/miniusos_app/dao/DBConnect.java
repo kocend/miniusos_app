@@ -227,7 +227,7 @@ public class DBConnect implements dataBaseServiceInterface {
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT g.nazwa_grupy, g.id_gr, s.imię, s.nazwisko, s.nrUSOS FROM studenci s \r\n" + 
-					"JOIN przynależność p ON s.id_s=p.id_s JOIN grupy g ON p.id_gr=g.id_gr\r\n" + 
+					"JOIN przynależność p ON s.nrUSOS=p.nrUSOS JOIN grupy g ON p.id_gr=g.id_gr\r\n" + 
 					"WHERE g.id_gr IN \r\n" + 
 					"(SELECT id_gr FROM koordynatorzy k JOIN grupy g ON k.id_k=g.id_k WHERE g.id_k="+id_koordynatora+")");
 			while(rs.next()) {
