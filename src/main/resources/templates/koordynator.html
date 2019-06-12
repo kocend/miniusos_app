@@ -19,12 +19,12 @@
         </tr>
         <tr th:each="lista : ${lista_grup}">
             <td th:text="${lista.getNazwaGrupy()}"></td>
-            <td th:text="${lista.getIdGrupy()}"></td>
+            <td th:name="id" th:text="${lista.getIdGrupy()}"></td>
             <td th:text="${lista.getImie()}"></td>
             <td th:text="${lista.getNazwisko()}"></td>
             <td th:text="${lista.getIndex()}"></td>
             <td>
-                <input th:type="radio" th:name="choice" th:value="${lista.getIndex()}" th:form="getForm" required>
+                <input th:type="radio" th:name="choice" th:value="${lista.getIndex()+'!'+lista.getIdGrupy()}" th:form="getForm" required>
             </td>
         </tr>
         <tr>

@@ -36,13 +36,42 @@ public class KoordynatorController {
     }
 
     @RequestMapping(value = "/koordynator/wystaw_oceny", method = RequestMethod.GET)
-    public ModelAndView markStudent(@RequestParam(value = "choice")Integer id_studenta) {
+    public ModelAndView getMarkStudentForm(@RequestParam(value = "choice") String choice) {
+
+        ModelAndView m = new ModelAndView();
+
+        String id_studentaSTR = choice.substring(0,choice.indexOf('!'));
+        String id_grupySTR = choice.substring(choice.indexOf('!')+1);
+        Integer id_studenta;
+        Integer id_grupy;
+
+        try{
+            id_studenta = Integer.parseInt(id_studentaSTR);
+            id_grupy = Integer.parseInt(id_grupySTR);
+        }
+        catch (NumberFormatException ex){
+          ex.printStackTrace();
+          m.setViewName("hello");
+          return m;
+        };
 
         Student student = koordynatorService.getStudentByID(id_studenta);
-        ModelAndView m = new ModelAndView();
         m.setViewName("ocena");
         m.addObject("student",koordynatorService.getStudentByID(id_studenta));
+        m.addObject("id_group",id_grupy);
         return m;
+    }
+
+    @RequestMapping(value = "/koordynator/wystaw_oceny", method = RequestMethod.PUT)
+    public ModelAndView markStudent(@RequestParam(value = "id_grupy1") Integer id_grupy,
+                                    @RequestParam(value = "numer_USOS") Integer numerUSOS,
+                                    @RequestParam(value = "kolokwium_1") Integer kolokwium_1,
+                                    @RequestParam(value = "kolokwium_2") Integer kolokwium_2,
+                                    @RequestParam(value = "ocena_koncowa") Double ocenaKoncowa) {
+
+        koordynatorService.wystawOcene(id_grupy,numerUSOS,ocenaKoncowa,kolokwium_1,kolokwium_2);
+
+        return getKoordynatorForm();
     }
 
 }

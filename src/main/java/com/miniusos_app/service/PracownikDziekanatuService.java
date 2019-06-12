@@ -20,22 +20,22 @@ public class PracownikDziekanatuService {
         setGrupy(new LinkedList<>());
         getGrupy().add(new Grupa("PWJ",1, DZIEN_TYGODNIA.poniedziałek,
                 "12:30","24:30",50,
-                new Koordynator("MArcel","nieznany")));
+                new Koordynator("MArcel","nieznany",1)));
         getGrupy().add(new Grupa("PWC",2, DZIEN_TYGODNIA.wtorek,
                 "12:30","14:30",76,
-                new Koordynator("Mironrcel","nbrakny")));
+                new Koordynator("Mironrcel","nbrakny",2)));
         getGrupy().add(new Grupa("PW Pythonie",3, DZIEN_TYGODNIA.piątek,
                 "10:30","24:30",10,
-                new Koordynator("Andrzej","Biały")));
+                new Koordynator("Andrzej","Biały",3)));
         getGrupy().add(new Grupa("PW C++",4, DZIEN_TYGODNIA.sobota,
                 "7:30","22:30",500,
-                new Koordynator("Alex","ABCD")));
+                new Koordynator("Alex","ABCD",4)));
 
         koordynatorzy = new LinkedList<>();
-        koordynatorzy.add(new Koordynator("Andrzej","Paczos"));
-        koordynatorzy.add(new Koordynator("Jakub","Panek"));
-        koordynatorzy.add(new Koordynator("Marcin", "Prokopiuk"));
-        koordynatorzy.add(new Koordynator("Dan","Cederholm"));
+        koordynatorzy.add(new Koordynator("Andrzej","Paczos",1));
+        koordynatorzy.add(new Koordynator("Jakub","Panek",2));
+        koordynatorzy.add(new Koordynator("Marcin", "Prokopiuk",3));
+        koordynatorzy.add(new Koordynator("Dan","Cederholm",4));
     }
 
     public List<Grupa> getAllGroups(){
