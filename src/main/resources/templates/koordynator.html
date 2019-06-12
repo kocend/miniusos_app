@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Koordynator Data</title>
 </head>
 <body>
-This is site for KOORDYNATOR!~!
+
+<div th:if="${not #lists.isEmpty(grupy)}">
+    <h1>Menadżer pracownika dziekanatu</h1>
+    <hr>
+    <table>
+        <tr>
+            <th>nazwa</th>
+            <th>numer id</th>
+            <th>dzien tygodnia</th>
+            <th>godzina rozpoczecia</th>
+            <th>godzina zakonczenia</th>
+            <th>limit miejsc</th>
+            <th>imie koordynatora</th>
+            <th>nazwisko koordynatora</th>
+            <th>edytuj</th>
+            <th>usuń</th>
+        </tr>
+        <tr th:each="grupa : ${grupy}">
+            <td th:text="${grupa.getNazwaGrupy()}"></td>
+            <td th:text="${grupa.getId_grupy()}"></td>
+            <td th:text="${grupa.getDzienTygodnia()}"></td>
+            <td th:text="${grupa.getGodzinaRozpoczecia()}"></td>
+            <td th:text="${grupa.getGodzinaZakonczenia()}"></td>
+            <td th:text="${grupa.getLimitMiejsc()}"></td>
+            <td th:text="${grupa.koordynator.getImie()}">
+            <td th:text="${grupa.koordynator.getNazwisko()}"></td>
+            <td>
+                <input th:type="radio" th:name="option" th:value="${grupa.getId_grupy()}" th:form="putForm" required>
+            </td>
+            <td>
+                <input th:type="radio" th:name="option" th:value="${grupa.getId_grupy()}" th:form="deleteForm" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/pracownik_dziekanatu", method="post" id="postForm">
+                    <input type="submit" name="new" value="nowa grupa">
+                </form>
+                <form th:action="@{/pracownik_dziekanatu}" th:method="put" th:id="putForm">
+                    <input type="submit" name="update" value="edytuj zaznaczoną grupę">
+                </form>
+                <form th:action="@{/pracownik_dziekanatu}" th:method="delete" th:id="deleteForm">
+                    <input type="submit" name="delete" value="usuń zaznaczoną grupę">
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</div>
 </body>
 </html>

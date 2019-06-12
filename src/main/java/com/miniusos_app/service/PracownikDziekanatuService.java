@@ -13,6 +13,7 @@ import java.util.List;
 public class PracownikDziekanatuService {
 
     private List<Grupa> grupy;
+    private List<Koordynator> koordynatorzy;
 
     public PracownikDziekanatuService(){
         grupy = new LinkedList<>();
@@ -28,6 +29,12 @@ public class PracownikDziekanatuService {
         grupy.add(new Grupa("PW C++",4, DZIEN_TYGODNIA.sobota,
                 "7:30","22:30",500,
                 new Koordynator("Alex","ABCD")));
+
+        koordynatorzy = new LinkedList<>();
+        koordynatorzy.add(new Koordynator("Andrzej","Paczos"));
+        koordynatorzy.add(new Koordynator("Jakub","Panek"));
+        koordynatorzy.add(new Koordynator("Marcin", "Prokopiuk"));
+        koordynatorzy.add(new Koordynator("Dan","Cederholm"));
     }
 
     public List<Grupa> getAllGroups(){
@@ -39,15 +46,31 @@ public class PracownikDziekanatuService {
         return 1;
     }
 
+    public int updateGroupByID(Integer id_grupy, Grupa g){
+        //WARNING tylko przykład normalnie powoduje błędy
+        grupy.set(id_grupy-1,g);
+        return 1;
+    }
+
     public Grupa getGroupByID(Integer id_grupy){
         //WARNING tylko przykład normalnie powoduje błędy
-        return grupy.get(id_grupy);
+        Grupa g;
+        try {
+            g = grupy.get(id_grupy - 1);
+        }
+        catch (IndexOutOfBoundsException ex){
+            return null;
+        }
+        return g;
     }
 
     public int deleteFromGroup(Integer id_grupy){
 
-        boolean b =grupy.remove(id_grupy);
+        grupy.remove(id_grupy-1);
         return 1;
     }
 
+    public List<Koordynator> getAllMasters(){
+        return koordynatorzy;
+    }
 }
