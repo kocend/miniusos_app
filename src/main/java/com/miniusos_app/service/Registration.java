@@ -20,10 +20,6 @@ public class Registration {
 
     public int register(String accountType, String name, String lastName, String password){
 
-        //prepare uuid
-        /*<option value="STUDENT">student</option>
-                <option value="KOORDYNATOR">koordynator</option>
-                <option value="PRACOWNIK_DZIEKANATU">pracownik dziekanatu</option>*/
 
         Integer index = null;
 
@@ -66,11 +62,11 @@ public class Registration {
                 statement.execute();
 
                 if("STUDENT".equals(accountType))
-                    statement = conn.prepareStatement("insert into koordynatorzy(id_k, imie, nazwisko) values (?,?,?);");
-                if("KOORDYNATOR".equals(accountType))
-                    statement = conn.prepareStatement("insert into pracownicy_dziekanatu(id_dz, imie, nazwisko) values (?,?,?);");
-                if("PRACOWNIK_DZIEKANATU".equals(accountType))
                     statement = conn.prepareStatement("insert into studenci(nrUSOS, imie, nazwisko) values (?,?,?);");
+                if("KOORDYNATOR".equals(accountType))
+                    statement = conn.prepareStatement("insert into koordynatorzy(id_k, imie, nazwisko) values (?,?,?);");
+                if("PRACOWNIK_DZIEKANATU".equals(accountType))
+                    statement = conn.prepareStatement("insert into pracownicy_dziekanatu(id_dz, imie, nazwisko) values (?,?,?);");
 
                 statement.setInt(1,index);
                 statement.setString(2,name);

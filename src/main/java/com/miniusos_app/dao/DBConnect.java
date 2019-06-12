@@ -3,7 +3,10 @@ package com.miniusos_app.dao;
 import com.fasterxml.jackson.annotation.ObjectIdGenerator.IdKey;
 import com.miniusos_app.dao.dataBaseServiceInterface;
 import com.miniusos_app.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -12,15 +15,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository("mysqlDB")
 public class DBConnect implements dataBaseServiceInterface {
 	private Connection con;
 	private Statement st;
 	private ResultSet rs;
 
+	@Autowired
+	private DataSource dataSource;
+
 	public DBConnect() {
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost/mini_usos?serverTimezone=Europe/Berlin","root","");
-			
+			//con = DriverManager.getConnection("jdbc:mysql://localhost/mini_usos?serverTimezone=Europe/Berlin","root","");
+			con = dataSource.getConnection();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

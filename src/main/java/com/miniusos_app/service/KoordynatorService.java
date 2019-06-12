@@ -51,13 +51,27 @@ public class KoordynatorService {
     public int wystawOcene(Integer id_grupy, Integer id_studenta,
                            Double ocenaKoncowa,
                            Integer kolokwiumI, Integer kolokwiumII){
-        Student s = listaStudentow.get(id_studenta-1);
-        s.setPunktyKolokwiumI(kolokwiumI);
-        s.setPunktyKolokwiumII(kolokwiumII);
-        s.setOcenaKoncowa(ocenaKoncowa);
 
         return 1;
     }
+
+    public Wyniki getStudentsMarks(Student s, String nazwaGrupy){
+        //nazwa grupy nullem
+        Wyniki wyniki = new Wyniki("java");
+        wyniki.setKolokwium1(12);
+        wyniki.setKolokwium2(23);
+        wyniki.setOcenaKoncowa(5.3);
+        return wyniki;
+    }
+
+    public List<Wyniki> getAllStudentsMarks(Student s){
+        return null;
+    }
+
+    public Grupa getGroupByID(Integer id_grupy){
+        return null;
+    }
+
 
     public int magic5(Integer id_koordynatora){
 

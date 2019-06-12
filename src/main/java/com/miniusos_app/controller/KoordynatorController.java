@@ -1,7 +1,9 @@
 package com.miniusos_app.controller;
 
+import com.miniusos_app.model.Grupa;
 import com.miniusos_app.model.GrupaStudent;
 import com.miniusos_app.model.Student;
+import com.miniusos_app.model.Wyniki;
 import com.miniusos_app.service.KoordynatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,10 +60,14 @@ public class KoordynatorController {
           return m;
         };
 
+        Grupa g = koordynatorService.getGroupByID(id_grupy);
         Student student = koordynatorService.getStudentByID(id_studenta);
+        Wyniki wyniki = koordynatorService.getStudentsMarks(student,null);
         m.setViewName("ocena");
+
         m.addObject("student",koordynatorService.getStudentByID(id_studenta));
         m.addObject("id_group",id_grupy);
+        m.addObject("wyniki",wyniki);
         return m;
     }
 
