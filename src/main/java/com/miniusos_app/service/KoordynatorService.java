@@ -48,6 +48,17 @@ public class KoordynatorService {
         return listaStudentow.get(id-1);
     }
 
+    public int wystawOcene(Integer id_grupy, Integer id_studenta,
+                           Double ocenaKoncowa,
+                           Integer kolokwiumI, Integer kolokwiumII){
+        Student s = listaStudentow.get(id_studenta-1);
+        s.setPunktyKolokwiumI(kolokwiumI);
+        s.setPunktyKolokwiumII(kolokwiumII);
+        s.setOcenaKoncowa(ocenaKoncowa);
+
+        return 1;
+    }
+
     public List<GrupaStudent> getAllStudents(Integer id_koordynatora) {
         return listaGrup_I_studentow;
     }

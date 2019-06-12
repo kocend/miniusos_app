@@ -72,7 +72,7 @@ public class PracownikDziekanatuController {
         if(null==gr) {
             Grupa g = new Grupa(nazwaGrupy, id, dzienTygodnia,
                     godzinaRozpoczecia, godzinaZakonczenia, limitMiejsc,
-                    new Koordynator(imieKoordynatora, nazwiskoKoordynatora));
+                    new Koordynator(imieKoordynatora, nazwiskoKoordynatora,1));
 
             pracownikDziekanatuService.addGroup(g);
         }
@@ -80,7 +80,7 @@ public class PracownikDziekanatuController {
             //zaktualizuj istniejącą
             pracownikDziekanatuService.updateGroupByID(id,new Grupa(nazwaGrupy, id, dzienTygodnia,
                     godzinaRozpoczecia, godzinaZakonczenia, limitMiejsc,
-                    new Koordynator(imieKoordynatora, nazwiskoKoordynatora)));
+                    new Koordynator(imieKoordynatora, nazwiskoKoordynatora,2)));
         }
         //processing new group
 

@@ -26,7 +26,7 @@ public interface dataBaseServiceInterface {
     public Student pobierzStudentaPoID(Integer id);
     public int magicznyGuzikWystaw5tymCoNieMajaOceny(Integer id_grupy);
     public int wystawOcene(Integer id_grupy, Integer id_studenta,
-                           Integer ocenaKoncowa,
+                           Double ocenaKoncowa,
                            Integer kolokwiumI, Integer kolokwiumII);
 
     //dla studenta

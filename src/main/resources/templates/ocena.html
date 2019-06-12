@@ -12,6 +12,7 @@
     <form th:action="@{/koordynator/wystaw_oceny}", th:method="put">
         <table>
             <tr>
+                <th>id grupy</th>
                 <th>imię</th>
                 <th>nazwisko</th>
                 <th>numer USOS</th>
@@ -20,12 +21,13 @@
                 <th>ocena końcowa</th>
             </tr>
             <tr>
-                <td><input type="text" th:name="imię" th:value="${student.getImie()}" disabled></td>
-                <td><input type="text" th:name="nazwisko" th:value="${student.getNazwisko()}" disabled></td>
-                <td><input type="text" th:name="numer_USOS" th:value="${student.getPunktyKolokwiumI()}" disabled></td>
-                <td><input type="text" th:name="kolokwium_1" th:value="${student.getPunktyKolokwiumI()}" ></td>
-                <td><input type="text" th:name="kolokwium_2" th:value="${student.getPunktyKolokwiumII()}" ></td>
-                <td><input type="text" th:name="ocena_koncowa" th:value="${student.getOcenaKoncowa()}" ></td>
+                <td><input type="text" th:name="id_grupy1" th:value="${id_group}" readonly></td>
+                <td><input type="text" th:name="imie" th:value="${student.getImie()}" readonly></td>
+                <td><input type="text" th:name="nazwisko" th:value="${student.getNazwisko()}" readonly></td>
+                <td><input type="text" th:name="numer_USOS" th:value="${student.getNumerUSOS()}" readonly></td>
+                <td><input type="text" th:name="kolokwium_1" th:value="${student.getPunktyKolokwiumI()}"  required></td>
+                <td><input type="text" th:name="kolokwium_2" th:value="${student.getPunktyKolokwiumII()}" required></td>
+                <td><input type="text" th:name="ocena_koncowa" th:value="${student.getOcenaKoncowa()}" required></td>
             </tr>
         </table>
         <input type="submit" name="apply" value="zatwierdź">

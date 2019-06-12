@@ -18,7 +18,7 @@ public class Student {
         this.numerUSOS=numerUsos;
         punktyKolokwiumI=0;
         punktyKolokwiumII=0;
-        ocenaKoncowa=0.0;
+        setOcenaKoncowa(0.0);
        // przeliczPunkty();
     }
 
@@ -85,5 +85,9 @@ public class Student {
     @Override
     public String toString() {
         return imie + " " + nazwisko + " " + numerUSOS;
+    }
+
+    public void setOcenaKoncowa(Double ocenaKoncowa) {
+        this.ocenaKoncowa = ocenaKoncowa;
     }
 }
