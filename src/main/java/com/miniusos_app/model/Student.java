@@ -7,6 +7,10 @@ public class Student {
     private String imie;
     private String nazwisko;
     private Integer numerUSOS;
+//    private Double ocenaKoncowa;
+//    private Integer punktyKolokwiumI;
+//    private Integer punktyKolokwiumII;
+//    private Integer sumaPunktow;
 
     public Student(String imie, String nazwisko, Integer numerUsos) {
         this.imie=imie;
