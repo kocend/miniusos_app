@@ -19,7 +19,7 @@ public interface dataBaseServiceInterface {
     public int dodajGrupe(Grupa g);
     public int usunGrupePoID(Integer id_grupy);
     public int zaktualizujGrupePoID(Integer id_grupy, Grupa g);
-    public int pobierzWszystkichKoordynatorow();
+    public List<Koordynator> pobierzWszystkichKoordynatorow();
 
     //dla koordynatora
     public List<GrupaStudent> pobierzGrupyIStudentowKoordynatora(Integer id_koordynatora);
