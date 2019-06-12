@@ -2,15 +2,7 @@ package com.miniusos_app.dao;
 
 import com.fasterxml.jackson.annotation.ObjectIdGenerator.IdKey;
 import com.miniusos_app.dao.dataBaseServiceInterface;
-<<<<<<< HEAD
-import com.miniusos_app.model.DZIEN_TYGODNIA;
-import com.miniusos_app.model.Grupa;
-import com.miniusos_app.model.GrupaStudent;
-import com.miniusos_app.model.Koordynator;
-import com.miniusos_app.model.Student;
-=======
 import com.miniusos_app.model.*;
->>>>>>> 943377f4618dee350ebbb5f911308d5a1332b658
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -88,18 +80,8 @@ public class DBConnect implements dataBaseServiceInterface {
 		}
 		return lista;
 	}
-<<<<<<< HEAD
-	
-	public Grupa pobbierzGrupePoID(Integer id) {
-=======
 
-    @Override
-    public Grupa pobierzGrupePoID(Integer id_grupy) {
-        return null;
-    }
-
-    public Grupa pobbierzGrupePoId(Integer id) {
->>>>>>> 943377f4618dee350ebbb5f911308d5a1332b658
+    public Grupa pobierzGrupePoID(Integer id) {
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT * FROM grupy g JOIN koordynatorzy k ON g.id_k=k.id_k WHERE g.id_k="+id.toString());
@@ -303,40 +285,40 @@ public class DBConnect implements dataBaseServiceInterface {
 		return odp;
 	}
 
-    @Override
-    public List<Koordynator> pobierzWszystkichKoordynatorow() {
-        return null;
-    }
-
-    @Override
-    public List<GrupaStudent> pobierzGrupyIStudentowKoordynatora(Integer id_koordynatora) {
-        return null;
-    }
-
-    @Override
-    public Student pobierzStudentaPoID(Integer id) {
-        return null;
-    }
-
-    @Override
-    public int magicznyGuzikWystaw5tymCoNieMajaOceny(Integer id_grupy) {
-        return 0;
-    }
-
-    @Override
-    public int wystawOcene(Integer id_grupy, Integer id_studenta, Double ocenaKoncowa, Integer kolokwiumI, Integer kolokwiumII) {
-        return 0;
-    }
-
-    @Override
-    public int zapiszDoGrupy(Student s, Integer id_grupy) {
-        return 0;
-    }
-
-    @Override
-    public int pobierzMojeWyniki(Student s) {
-        return 0;
-    }
+//    @Override
+//    public List<Koordynator> pobierzWszystkichKoordynatorow() {
+//        return null;
+//    }
+//
+//    @Override
+//    public List<GrupaStudent> pobierzGrupyIStudentowKoordynatora(Integer id_koordynatora) {
+//        return null;
+//    }
+//
+//    @Override
+//    public Student pobierzStudentaPoID(Integer id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public int magicznyGuzikWystaw5tymCoNieMajaOceny(Integer id_grupy) {
+//        return 0;
+//    }
+//
+//    @Override
+//    public int wystawOcene(Integer id_grupy, Integer id_studenta, Double ocenaKoncowa, Integer kolokwiumI, Integer kolokwiumII) {
+//        return 0;
+//    }
+//
+//    @Override
+//    public int zapiszDoGrupy(Student s, Integer id_grupy) {
+//        return 0;
+//    }
+//
+//    @Override
+//    public int pobierzMojeWyniki(Student s) {
+//        return 0;
+//    }
 
 
 }
