@@ -256,6 +256,8 @@ public class DBConnect implements dataBaseServiceInterface {
 		List<GrupaStudent> lista = new ArrayList<GrupaStudent>();
 		try {
 			st = con.createStatement();
+
+			//TODO zapytanie nie zwraca listy
 			rs = st.executeQuery("SELECT g.nazwa_grupy, g.id_gr, s.imie, s.nazwisko, s.nrUSOS FROM studenci s\r\n" +
 					"JOIN przynaleznosc p ON s.nrUSOS=p.nrUSOS JOIN grupy g ON p.id_gr=g.id_gr\r\n" +
 					"WHERE g.id_gr IN\r\n" + 
