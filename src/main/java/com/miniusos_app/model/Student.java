@@ -18,10 +18,10 @@ public class Student {
         this.numerUSOS=numerUsos;
         punktyKolokwiumI=0;
         punktyKolokwiumII=0;
-        przeliczPunkty();
+       // przeliczPunkty();
     }
 
-    private void przeliczPunkty() {
+   /* private void przeliczPunkty() {
         sumaPunktow=punktyKolokwiumI+punktyKolokwiumII;
 
         if(sumaPunktow<50)
@@ -36,7 +36,7 @@ public class Student {
             ocenaKoncowa=4.5;
         else if(sumaPunktow<=100)
             ocenaKoncowa=5.0;
-    }
+    }*/
 
     public String getImie() {
         return imie;
@@ -63,19 +63,19 @@ public class Student {
         return punktyKolokwiumI;
     }
     public void setPunktyKolokwiumI(Integer punktyKolokwiumI) {
-        if(punktyKolokwiumI>=0&&punktyKolokwiumI<=50) {
+        //if(punktyKolokwiumI>=0&&punktyKolokwiumI<=50) {
             this.punktyKolokwiumI = punktyKolokwiumI;
-            przeliczPunkty();
-        }
+            //przeliczPunkty();
+        //}
     }
     public Integer getPunktyKolokwiumII() {
         return punktyKolokwiumII;
     }
     public void setPunktyKolokwiumII(Integer punktyKolokwiumII) {
-        if(punktyKolokwiumII>=0&&punktyKolokwiumII<=50) {
+        //if(punktyKolokwiumII>=0&&punktyKolokwiumII<=50) {
             this.punktyKolokwiumII = punktyKolokwiumII;
-            przeliczPunkty();
-        }
+           // przeliczPunkty();
+        //}
     }
     public Integer getSumaPunktow() {
         return sumaPunktow;

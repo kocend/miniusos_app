@@ -15,8 +15,11 @@ public class KoordynatorController {
 
     @RequestMapping(value = "/koordynator", method = RequestMethod.GET)
     public ModelAndView getKoordynatorForm() {
+
         ModelAndView m = new ModelAndView();
         m.setViewName("koordynator");
+        //jak zdobyć id zalogowanego koordynatora
+        m.addObject("lista_grup",koordynatorService.getAllStudents( 1));
         return m;
     }
 

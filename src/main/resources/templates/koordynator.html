@@ -6,48 +6,34 @@
 </head>
 <body>
 
-<div th:if="${not #lists.isEmpty(grupy)}">
-    <h1>Menadżer pracownika dziekanatu</h1>
+<div th:if="${not #lists.isEmpty(lista_grup)}">
+    <h1>Menadżer koordynatora grup studenckich</h1>
     <hr>
     <table>
         <tr>
-            <th>nazwa</th>
-            <th>numer id</th>
-            <th>dzien tygodnia</th>
-            <th>godzina rozpoczecia</th>
-            <th>godzina zakonczenia</th>
-            <th>limit miejsc</th>
-            <th>imie koordynatora</th>
-            <th>nazwisko koordynatora</th>
-            <th>edytuj</th>
-            <th>usuń</th>
+            <th>nazwa grupy</th>
+            <th>numer grupy</th>
+            <th>imie</th>
+            <th>nazwisko</th>
+            <th>index</th>
         </tr>
-        <tr th:each="grupa : ${grupy}">
-            <td th:text="${grupa.getNazwaGrupy()}"></td>
-            <td th:text="${grupa.getId_grupy()}"></td>
-            <td th:text="${grupa.getDzienTygodnia()}"></td>
-            <td th:text="${grupa.getGodzinaRozpoczecia()}"></td>
-            <td th:text="${grupa.getGodzinaZakonczenia()}"></td>
-            <td th:text="${grupa.getLimitMiejsc()}"></td>
-            <td th:text="${grupa.koordynator.getImie()}">
-            <td th:text="${grupa.koordynator.getNazwisko()}"></td>
+        <tr th:each="lista : ${lista_grup}">
+            <td th:text="${lista.getNazwaGrupy()}"></td>
+            <td th:text="${lista.getIdGrupy()}"></td>
+            <td th:text="${lista.getImie()}"></td>
+            <td th:text="${lista.getNazwisko()}"></td>
+            <td th:text="${lista.getIndex()}"></td>
             <td>
-                <input th:type="radio" th:name="option" th:value="${grupa.getId_grupy()}" th:form="putForm" required>
-            </td>
-            <td>
-                <input th:type="radio" th:name="option" th:value="${grupa.getId_grupy()}" th:form="deleteForm" required>
+                <input th:type="radio" th:name="choise" th:value="${lista.getIndex()}" th:form="putForm" required>
             </td>
         </tr>
         <tr>
             <td>
-                <form action="/pracownik_dziekanatu", method="post" id="postForm">
-                    <input type="submit" name="new" value="nowa grupa">
+                <form action="/koordynator/magiczne5", method="post" id="postForm">
+                    <input type="submit" name="magiczne5" value="magiczny przycisk do wystawienia 5">
                 </form>
-                <form th:action="@{/pracownik_dziekanatu}" th:method="put" th:id="putForm">
-                    <input type="submit" name="update" value="edytuj zaznaczoną grupę">
-                </form>
-                <form th:action="@{/pracownik_dziekanatu}" th:method="delete" th:id="deleteForm">
-                    <input type="submit" name="delete" value="usuń zaznaczoną grupę">
+                <form th:action="@{/koordynator/wystaw_oceny}" th:method="put" th:id="putForm">
+                    <input type="submit" name="ocen" value="oceń wybranego studenta">
                 </form>
             </td>
         </tr>

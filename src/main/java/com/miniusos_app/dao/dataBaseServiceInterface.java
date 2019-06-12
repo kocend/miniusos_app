@@ -1,10 +1,12 @@
 package com.miniusos_app.dao;
 
 import com.miniusos_app.model.Grupa;
+import com.miniusos_app.model.GrupaStudent;
 import com.miniusos_app.model.Koordynator;
 import com.miniusos_app.model.Student;
 
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public interface dataBaseServiceInterface {
@@ -20,11 +22,11 @@ public interface dataBaseServiceInterface {
     public int pobierzWszystkichKoordynatorow();
 
     //dla koordynatora
-    public List<Grupa> pobierzGrupyKoordynatora(Koordynator k);
+    public List<GrupaStudent> pobierzGrupyIStudentowKoordynatora(Integer id_koordynatora);
     public int magicznyGuzikWystaw5tymCoNieMajaOceny(Integer id_grupy);
-    public int wystawOcene(Integer id_grupy, Student s, Integer ocena);
-    public int ocenKolokwiumI(Integer id_grupy,Student s,Integer punkty);
-    public int ocenKolokwiumII(Integer id_grupy,Student s,Integer punkty);
+    public int wystawOcene(Integer id_grupy, Integer id_studenta,
+                           Integer ocenaKoncowa,
+                           Integer kolokwiumI, Integer kolokwiumII);
 
     //dla studenta
     public int zapiszDoGrupy(Student s, Integer id_grupy);

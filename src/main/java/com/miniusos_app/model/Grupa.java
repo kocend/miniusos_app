@@ -1,6 +1,8 @@
 package com.miniusos_app.model;
 
 
+import java.util.List;
+
 public class Grupa{
 
     private String nazwaGrupy;
@@ -10,6 +12,13 @@ public class Grupa{
     private String godzinaZakonczenia;
     private Integer limitMiejsc;
     private Koordynator koordynator;
+
+
+    //poniższego pola nie zapisywać w bazie danych
+    //jest to pole wyłącznie pomocnicze
+    //do transportu informacji o studentach  z konkretnych grup
+    //z warstwy bazy danych do kontrolera
+    private List<Student> listaStudentow;
 
 
     public Grupa(String nazwaGrupy, Integer id, DZIEN_TYGODNIA dzienTygodnia,
@@ -94,4 +103,11 @@ public class Grupa{
         return "Grupa " + getId_grupy() + " " + dzienTygodnia.toString()+" "+godzinaRozpoczecia+"-"+godzinaZakonczenia;
     }
 
+    public List<Student> getListaStudentow() {
+        return listaStudentow;
+    }
+
+    public void setListaStudentow(List<Student> listaStudentow) {
+        this.listaStudentow = listaStudentow;
+    }
 }
