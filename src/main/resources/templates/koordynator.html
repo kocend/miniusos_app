@@ -24,7 +24,7 @@
             <td th:text="${lista.getNazwisko()}"></td>
             <td th:text="${lista.getIndex()}"></td>
             <td>
-                <input th:type="radio" th:name="choise" th:value="${lista.getIndex()}" th:form="putForm" required>
+                <input th:type="radio" th:name="choice" th:value="${lista.getIndex()}" th:form="getForm" required>
             </td>
         </tr>
         <tr>
@@ -32,7 +32,7 @@
                 <form action="/koordynator/magiczne5", method="post" id="postForm">
                     <input type="submit" name="magiczne5" value="magiczny przycisk do wystawienia 5">
                 </form>
-                <form th:action="@{/koordynator/wystaw_oceny}" th:method="put" th:id="putForm">
+                <form th:action="@{/koordynator/wystaw_oceny}" th:method="get" th:id="getForm">
                     <input type="submit" name="ocen" value="oceń wybranego studenta">
                 </form>
             </td>
