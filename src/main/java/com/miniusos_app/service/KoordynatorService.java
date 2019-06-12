@@ -11,24 +11,41 @@ public class KoordynatorService {
 
     //fake data
     List<GrupaStudent> listaGrup_I_studentow;
+    List<Student> listaStudentow;
 
     public KoordynatorService(){
         listaGrup_I_studentow = new LinkedList<>();
 
         listaGrup_I_studentow.add(new GrupaStudent("PWJ",1,"Konrad",
-                "CEndrowski",8273));
-        listaGrup_I_studentow.add(new GrupaStudent("PWc",1,"hsdacb",
-                "gber",83473));
-        listaGrup_I_studentow.add(new GrupaStudent("PWp",1,"lvkpdz",
-                "addca",273));
-        listaGrup_I_studentow.add(new GrupaStudent("PWw",1,"Konrfoqjo38fad",
-                "ecvw",8223));
-        listaGrup_I_studentow.add(new GrupaStudent("PWb",1,"Klvkpeonrad",
-                "neneber",4773));
-        listaGrup_I_studentow.add(new GrupaStudent("PWC++",1,"Kov-3omovk0inrad",
-                "afas",5280));
-        listaGrup_I_studentow.add(new GrupaStudent("PWA",1,"zijov",
-                "bwrbgr",3273));
+                "CEndrowski",1));
+        listaGrup_I_studentow.add(new GrupaStudent("PWc",2,"hsdacb",
+                "gber",2));
+        listaGrup_I_studentow.add(new GrupaStudent("PWp",3,"lvkpdz",
+                "addca",3));
+        listaGrup_I_studentow.add(new GrupaStudent("PWw",4,"Konrfoqjo38fad",
+                "ecvw",4));
+        listaGrup_I_studentow.add(new GrupaStudent("PWb",5,"Klvkpeonrad",
+                "neneber",5));
+        listaGrup_I_studentow.add(new GrupaStudent("PWC++",6,"Kov-3omovk0inrad",
+                "afas",6));
+        listaGrup_I_studentow.add(new GrupaStudent("PWA",7,"zijov",
+                "bwrbgr",7));
+
+        listaStudentow = new LinkedList<>();
+        listaStudentow.add(new Student("Konrad",
+                "CEndrowski",1));
+        listaStudentow.add(new Student("Konrad",
+                "CEndrsadfowski",2));
+        listaStudentow.add(new Student("Konrad",
+                "e1dCEndrowski",3));
+        listaStudentow.add(new Student("Konrad",
+                "vbrtwCEndrowski",4));
+        listaStudentow.add(new Student("Konrad",
+                "vqv3CEndrowski",5));
+    }
+
+    public Student getStudentByID(Integer id){
+        return listaStudentow.get(id-1);
     }
 
     public List<GrupaStudent> getAllStudents(Integer id_koordynatora) {

@@ -41,7 +41,7 @@ public class KoordynatorController {
         Student student = koordynatorService.getStudentByID(id_studenta);
         ModelAndView m = new ModelAndView();
         m.setViewName("ocena");
-        m.addObject("lista_grup",koordynatorService.getAllStudents( 1));
+        m.addObject("student",koordynatorService.getStudentByID(id_studenta));
         return m;
     }
 

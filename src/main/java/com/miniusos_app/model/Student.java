@@ -18,6 +18,7 @@ public class Student {
         this.numerUSOS=numerUsos;
         punktyKolokwiumI=0;
         punktyKolokwiumII=0;
+        ocenaKoncowa=0.0;
        // przeliczPunkty();
     }
 

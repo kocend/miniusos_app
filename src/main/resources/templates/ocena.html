@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,7 +9,27 @@
 <div class="ocenaStudenta">
     <h1>Ocena studenta</h1>
     <hr>
-    <label>imie</label>
+    <form th:action="@{/koordynator/wystaw_oceny}", th:method="put">
+        <table>
+            <tr>
+                <th>imię</th>
+                <th>nazwisko</th>
+                <th>numer USOS</th>
+                <th>kolokwium 1</th>
+                <th>kolokwium 2</th>
+                <th>ocena końcowa</th>
+            </tr>
+            <tr>
+                <td><input type="text" th:name="imię" th:value="${student.getImie()}" disabled></td>
+                <td><input type="text" th:name="nazwisko" th:value="${student.getNazwisko()}" disabled></td>
+                <td><input type="text" th:name="numer_USOS" th:value="${student.getPunktyKolokwiumI()}" disabled></td>
+                <td><input type="text" th:name="kolokwium_1" th:value="${student.getPunktyKolokwiumI()}" ></td>
+                <td><input type="text" th:name="kolokwium_2" th:value="${student.getPunktyKolokwiumII()}" ></td>
+                <td><input type="text" th:name="ocena_koncowa" th:value="${student.getOcenaKoncowa()}" ></td>
+            </tr>
+        </table>
+        <input type="submit" name="apply" value="zatwierdź">
+    </form>
 </div>
 
 </body>
