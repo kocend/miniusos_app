@@ -81,12 +81,7 @@ public class DBConnect implements dataBaseServiceInterface {
 		return lista;
 	}
 
-    @Override
-    public Grupa pobierzGrupePoID(Integer id_grupy) {
-        return null;
-    }
-
-    public Grupa pobbierzGrupePoId(Integer id) {
+    public Grupa pobierzGrupePoID(Integer id) {
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT * FROM grupy g JOIN koordynatorzy k ON g.id_k=k.id_k WHERE g.id_k="+id.toString());
@@ -199,47 +194,189 @@ public class DBConnect implements dataBaseServiceInterface {
 					+ "limit_miejsc="+limitMiejsc.toString()
 					+ " id_k="+idKoordynatora.toString()
 					+" WHERE id_gr="+id_grupy);
+			st.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return odp;
 	}
+	
+	public List<Koordynator> pobierzWszystkichKoordynatorow(){
+		List<Koordynator> lista = new ArrayList<Koordynator>();
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery("SELECT * FROM koordynatorzy");
+			while(rs.next()) {
+				Integer idKoordynatora = rs.getInt("id_k");
+				String imie = rs.getString("imie");
+				String nazwisko = rs.getString("nazwisko");
+				 Koordynator k = new Koordynator(imie, nazwisko, idKoordynatora);
+				 lista.add(k);
+			}
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
+	public List<GrupaStudent> pobierzGrupyIStudentowKoordynatora(Integer id_koordynatora){
+		List<GrupaStudent> lista = new ArrayList<GrupaStudent>();
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery("SELECT g.nazwa_grupy, g.id_gr, s.imie, s.nazwisko, s.nrUSOS FROM studenci s\r\n" + 
+					"JOIN przynależność p ON s.nrUSOS=p.nrUSOS JOIN grupy g ON p.id_gr=g.id_gr\r\n" + 
+					"WHERE g.id_gr IN\r\n" + 
+					"(SELECT id_gr FROM koordynatorzy k JOIN grupy g ON k.id_k=g.id_k WHERE g.id_k="+id_koordynatora+")");
+			while(rs.next()) {
+				String nazwaGrupy = rs.getString("nazwa_grupy");
+				Integer idGrupy = rs.getInt("id_gr");
+				String imie = rs.getString("imie");
+				String nazwisko = rs.getString("nazwisko");
+				Integer nrUSOS = rs.getInt("nrUSOS");
+				GrupaStudent gs = new GrupaStudent(nazwaGrupy, idGrupy, imie, nazwisko, nrUSOS);
+				lista.add(gs);
+				st.close();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
+	public Student pobierzStudentaPoID(Integer id) {
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery("SELECT * FROM studenci WHERE nrUSOS="+id);
+			String imie = rs.getString("imie");
+			String nazwisko = rs.getString("nazwisko");
+//			Integer nrUSOS = rs.getInt("nrUSOS");
+//			Double ocenaKoncowa = rs.getDouble("ocena_koncowa");
+//			Integer kolokwium1 = rs.getInt("kolokwium1_pkt");
+//			Integer kolokwium2 = rs.getInt("kolokwium2_pkt");
+//			Integer sumaPkt = rs.getInt("suma_pkt");
+			Student s = new Student(imie, nazwisko, id);
+//			s.setPunktyKolokwiumI(kolokwium1);
+//			s.setPunktyKolokwiumII(kolokwium2);
+//			s.setOcenaKoncowa(ocenaKoncowa);
+//			s.setSumaPunktow(sumaPkt);
+			st.close();
+			return s;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public int magicznyGuzikWystaw5tymCoNieMajaOceny(Integer id_grupy) {
+		int odp = -1;
+		try {
+			st = con.createStatement();
+			odp = st.executeUpdate("UPDATE przynaleznosc SET ocena_koncowa=5 WHERE ocena_koncowa IS NULL");
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return odp;
+	}
+	
+	 public int wystawOcene(Integer id_grupy, Integer id_studenta,
+             Double ocenaKoncowa,
+             Integer kolokwiumI, Integer kolokwiumII) {
+		 int odp = -1;
+			try {
+				st = con.createStatement();
+				odp = st.executeUpdate("UPDATE przynaleznosc SET ocena_koncowa="+ocenaKoncowa
+						+", punkty_kolokwium1="+kolokwiumI
+						+", punkty_kolokwium2"+kolokwiumII
+						+" WHERE id_gr="+id_grupy
+						+" AND nrUSOS="+id_studenta);
+				st.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return odp;
+	 }
+	 
+	 public int zapiszDoGrupy(Student s, Integer id_grupy) {
+		 int odp = -1;
+			try {
+				st = con.createStatement();
+				odp = st.executeUpdate("INSERT INTO przynaleznosc (nrUSOS, id_gr) VALUES ("
+						+ s.getNumerUSOS()+","+id_grupy+")");
+				st.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return odp;
+	 }
+	 
+	 public List<Wyniki> pobierzMojeWyniki(Student s){
+		 List<Wyniki> lista = new ArrayList<Wyniki>();
+			try {
+				st = con.createStatement();
+				rs = st.executeQuery("SELECT g.nazwa_grupy, p.ocena_koncowa, p.punkty_kolokwium1, p.punkty_kolokwium2\r\n" + 
+						"FROM przynależność p JOIN grupy g ON p.id_gr=g.id_gr\r\n" + 
+						"WHERE p.nrUSOS="+ s.getNumerUSOS());
+				while(rs.next()) {
+					String nazwaGrupy = rs.getString("nazwa_grupy");
+					Double ocenaKoncowa = rs.getDouble("ocena_koncowa");
+					Integer kolokwium1 = rs.getInt("punkty_kolokwium1");
+					Integer kolokwium2 = rs.getInt("punkty_kolokwium2");
+					Wyniki w = new Wyniki(nazwaGrupy);
+					w.setKolokwium1(kolokwium1);
+					w.setKolokwium2(kolokwium2);
+					w.setOcenaKoncowa(ocenaKoncowa);
+					lista.add(w);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return lista;
+	 }
 
-    @Override
-    public List<Koordynator> pobierzWszystkichKoordynatorow() {
-        return null;
-    }
-
-    @Override
-    public List<GrupaStudent> pobierzGrupyIStudentowKoordynatora(Integer id_koordynatora) {
-        return null;
-    }
-
-    @Override
-    public Student pobierzStudentaPoID(Integer id) {
-        return null;
-    }
-
-    @Override
-    public int magicznyGuzikWystaw5tymCoNieMajaOceny(Integer id_grupy) {
-        return 0;
-    }
-
-    @Override
-    public int wystawOcene(Integer id_grupy, Integer id_studenta, Double ocenaKoncowa, Integer kolokwiumI, Integer kolokwiumII) {
-        return 0;
-    }
-
-    @Override
-    public int zapiszDoGrupy(Student s, Integer id_grupy) {
-        return 0;
-    }
-
-    @Override
-    public int pobierzMojeWyniki(Student s) {
-        return 0;
-    }
+//    @Override
+//    public List<Koordynator> pobierzWszystkichKoordynatorow() {
+//        return null;
+//    }
+//
+//    @Override
+//    public List<GrupaStudent> pobierzGrupyIStudentowKoordynatora(Integer id_koordynatora) {
+//        return null;
+//    }
+//
+//    @Override
+//    public Student pobierzStudentaPoID(Integer id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public int magicznyGuzikWystaw5tymCoNieMajaOceny(Integer id_grupy) {
+//        return 0;
+//    }
+//
+//    @Override
+//    public int wystawOcene(Integer id_grupy, Integer id_studenta, Double ocenaKoncowa, Integer kolokwiumI, Integer kolokwiumII) {
+//        return 0;
+//    }
+//
+//    @Override
+//    public int zapiszDoGrupy(Student s, Integer id_grupy) {
+//        return 0;
+//    }
+//
+//    @Override
+//    public int pobierzMojeWyniki(Student s) {
+//        return 0;
+//    }
 
 
 }

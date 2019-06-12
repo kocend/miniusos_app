@@ -4,7 +4,7 @@ import com.miniusos_app.model.Grupa;
 import com.miniusos_app.model.GrupaStudent;
 import com.miniusos_app.model.Koordynator;
 import com.miniusos_app.model.Student;
-
+import com.miniusos_app.model.Wyniki;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
@@ -31,6 +31,6 @@ public interface dataBaseServiceInterface {
 
     //dla studenta
     public int zapiszDoGrupy(Student s, Integer id_grupy);
-    public int pobierzMojeWyniki(Student s);
+    public List<Wyniki> pobierzMojeWyniki(Student s);
 
 }
