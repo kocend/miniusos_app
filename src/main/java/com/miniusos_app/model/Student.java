@@ -94,8 +94,4 @@ public class Student {
     public String toString() {
         return imie + " " + nazwisko + " " + numerUSOS;
     }
-
-    public void setOcenaKoncowa(Double ocenaKoncowa) {
-        this.ocenaKoncowa = ocenaKoncowa;
-    }
 }
