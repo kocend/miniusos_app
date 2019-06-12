@@ -1,3 +1,4 @@
+/*
 package com.miniusos_app.dao;
 
 import com.miniusos_app.dao.dataBaseServiceInterface;
@@ -153,3 +154,4 @@ public class DBConnect implements dataBaseServiceInterface {
 		
 	}
 }
+*/
