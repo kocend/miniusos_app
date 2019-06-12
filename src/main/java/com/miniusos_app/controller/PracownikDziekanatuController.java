@@ -38,12 +38,16 @@ public class PracownikDziekanatuController {
         ModelAndView m = new ModelAndView();
         m.setViewName("grupaFormularz");
         Grupa g = pracownikDziekanatuService.getGroupByID(id_grupy);
+        if(g==null){
+            return getPracownikDziekanatuForm();
+        }
         m.addObject("nazwa",g.getNazwaGrupy());
         m.addObject("numer_id",g.getId_grupy());
         m.addObject("dzien",g.getDzienTygodnia());
         m.addObject("godzina_rozpoczecia",g.getGodzinaRozpoczecia());
         m.addObject("godzina_zakonczenia",g.getGodzinaZakonczenia());
         m.addObject("limit_miejsc",g.getLimitMiejsc());
+        m.addObject("id_k",g.getKoordynator().getId());
         m.addObject("imie_koordynatora",g.getKoordynator().getImie());
         m.addObject("nazwisko_koordynatora",g.getKoordynator().getNazwisko());
         m.addObject("koordynatorzy",pracownikDziekanatuService.getAllMasters());
@@ -64,6 +68,7 @@ public class PracownikDziekanatuController {
                                  @RequestParam(value = "godzina_rozpoczecia") String godzinaRozpoczecia,
                                  @RequestParam(value = "godzina_zakonczenia") String godzinaZakonczenia,
                                  @RequestParam(value = "limit_miejsc") Integer limitMiejsc,
+                                 @RequestParam(value = "id_k") Integer id_k,
                                  @RequestParam(value = "imie_koordynatora") String imieKoordynatora,
                                  @RequestParam(value = "nazwisko_koordynatora") String nazwiskoKoordynatora) {
 
@@ -72,15 +77,16 @@ public class PracownikDziekanatuController {
         if(null==gr) {
             Grupa g = new Grupa(nazwaGrupy, id, dzienTygodnia,
                     godzinaRozpoczecia, godzinaZakonczenia, limitMiejsc,
-                    new Koordynator(imieKoordynatora, nazwiskoKoordynatora,1));
+                    new Koordynator(imieKoordynatora, nazwiskoKoordynatora,id_k));
 
-            pracownikDziekanatuService.addGroup(g);
+            if(pracownikDziekanatuService.addGroup(g)==5)
+                return addNewGroup();
         }
         else{
             //zaktualizuj istniejącą
             pracownikDziekanatuService.updateGroupByID(id,new Grupa(nazwaGrupy, id, dzienTygodnia,
                     godzinaRozpoczecia, godzinaZakonczenia, limitMiejsc,
-                    new Koordynator(imieKoordynatora, nazwiskoKoordynatora,2)));
+                    new Koordynator(imieKoordynatora, nazwiskoKoordynatora,id_k)));
         }
         //processing new group
 

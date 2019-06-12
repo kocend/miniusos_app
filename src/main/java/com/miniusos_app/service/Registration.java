@@ -31,11 +31,11 @@ public class Registration {
                 conn = dataSource.getConnection();
 
                 if("STUDENT".equals(accountType))
-                    statement = conn.prepareStatement("select * from studenci where imie=? and nazwisko=?");
+                    statement = conn.prepareStatement("select * from studenci where imie=? and nazwisko=?;");
                 if("KOORDYNATOR".equals(accountType))
-                    statement = conn.prepareStatement("select * from koordynatorzy where imie=? and nazwisko=?");
+                    statement = conn.prepareStatement("select * from koordynatorzy where imie=? and nazwisko=?;");
                 if("PRACOWNIK_DZIEKANATU".equals(accountType))
-                    statement = conn.prepareStatement("select * from pracownicy_dziekanatu where imie=? and nazwisko=?");
+                    statement = conn.prepareStatement("select * from pracownicy_dziekanatu where imie=? and nazwisko=?;");
 
                 statement.setString(1,name);
                 statement.setString(2,lastName);

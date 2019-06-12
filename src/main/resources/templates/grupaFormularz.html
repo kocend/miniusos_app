@@ -37,6 +37,9 @@
         <label>limit miejsc</label>
         <input type="text" placeholder="limit miejsc" name="limit_miejsc" th:value="${limit_miejsc}" required >
         </br>
+        <label>id koordynatora</label>
+        <input type="text" placeholder="id koordynatora" name="id_k" th:value="${id_k}" required >
+        </br>
         <label>imie koordynatora</label>
         <input type="text" placeholder="imie koordynatora" name="imie_koordynatora" th:value="${imie_koordynatora}" required >
         </br>
@@ -52,10 +55,12 @@
     <hr>
     <table>
         <tr>
+            <th>id koordynatora</th>
             <th>imię</th>
             <th>nazwisko</th>
         </tr>
         <tr th:each="koordynator : ${koordynatorzy}">
+            <td th:text="${koordynator.getId()}"></td>
             <td th:text="${koordynator.getImie()}"></td>
             <td th:text="${koordynator.getNazwisko()}"></td>
         </tr>

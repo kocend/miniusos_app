@@ -17,6 +17,7 @@
         <th>godzina rozpoczecia</th>
         <th>godzina zakonczenia</th>
         <th>limit miejsc</th>
+        <th>id koordynatora</th>
         <th>imie koordynatora</th>
         <th>nazwisko koordynatora</th>
         <th>edytuj</th>
@@ -29,6 +30,7 @@
         <td th:text="${grupa.getGodzinaRozpoczecia()}"></td>
         <td th:text="${grupa.getGodzinaZakonczenia()}"></td>
         <td th:text="${grupa.getLimitMiejsc()}"></td>
+        <td th:text="${grupa.koordynator.getId()}">
         <td th:text="${grupa.koordynator.getImie()}">
         <td th:text="${grupa.koordynator.getNazwisko()}"></td>
         <td>

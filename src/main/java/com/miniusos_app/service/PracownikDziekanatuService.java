@@ -47,40 +47,30 @@ public class PracownikDziekanatuService {
     }
 
     public List<Grupa> getAllGroups(){
-        return getGrupy();
+        return dbInterface.pobierzWszystkieGrupy();
     }
 
     public int addGroup(Grupa g){
-        getGrupy().add(g);
+        dbInterface.dodajGrupe(g);
         return 1;
     }
 
     public int updateGroupByID(Integer id_grupy, Grupa g){
-        //WARNING tylko przykład normalnie powoduje błędy
-        getGrupy().set(id_grupy-1,g);
+        dbInterface.zaktualizujGrupePoID(id_grupy,g);
         return 1;
     }
 
     public Grupa getGroupByID(Integer id_grupy){
-        //WARNING tylko przykład normalnie powoduje błędy
-        Grupa g;
-        try {
-            g = getGrupy().get(id_grupy - 1);
-        }
-        catch (IndexOutOfBoundsException ex){
-            return null;
-        }
-        return g;
+        return dbInterface.pobierzGrupePoID(id_grupy);
     }
 
     public int deleteFromGroup(Integer id_grupy){
-
-        getGrupy().remove(id_grupy-1);
+        dbInterface.usunGrupePoID(id_grupy);
         return 1;
     }
 
     public List<Koordynator> getAllMasters(){
-        return koordynatorzy;
+        return dbInterface.pobierzWszystkichKoordynatorow();
     }
 
     public List<Grupa> getGrupy() {
