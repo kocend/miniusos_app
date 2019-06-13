@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>registration</title>
-        <link rel="stylesheet" href="../static/css/registration.css">
+        <!--<link rel="stylesheet" href="/css/registration.css">-->
     </head>
     <body>
     <div class="registrationForm">
@@ -26,10 +26,10 @@
             <input type="text" placeholder="Podaj Nazwisko" name="last-name" required>
             </br>
             <label><b>hasło</b></label>
-            <input type="password" placeholder="Podaj hasło" name="password" required>
+            <input type="password" placeholder="Podaj hasło" name="password" required minlength="6">
             </br>
             <label><b>powtórz hasło</b></label>
-            <input type="password" placeholder="powtórz hasło" name="password-repeat" required>
+            <input type="password" placeholder="powtórz hasło" name="password-repeat" required minlength="6">
             </br>
             <input type="submit">
             </br>

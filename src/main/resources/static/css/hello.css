@@ -1,0 +1,12 @@
+body{
+    background-color: dodgerblue;
+    position: center;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 30px;
+}
+
+h1{
+    vertical-align: center;
+}

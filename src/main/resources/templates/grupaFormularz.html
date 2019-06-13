@@ -6,6 +6,8 @@
 </head>
 <body>
 <a href="/logout">wyloguj</a>
+-----
+<a href="/pracownik_dziekanatu">cofnij</a>
 <hr>
 
 <div class="grupaForm">
@@ -43,10 +45,10 @@
         <input type="text" placeholder="godzina zakonczenia" name="godzina_zakonczenia" th:value="${godzina_zakonczenia}" required >
         </br>
         <label>limit miejsc</label>
-        <input type="text" placeholder="limit miejsc" name="limit_miejsc" th:value="${limit_miejsc}" required >
+        <input type="text" placeholder="limit miejsc" name="limit_miejsc" th:value="${limit_miejsc}" required pattern="\d\d*" >
         </br>
         <label>id koordynatora</label>
-        <input type="text" placeholder="id koordynatora" name="id_k" th:value="${id_k}" required >
+        <input type="text" placeholder="id koordynatora" name="id_k" th:value="${id_k}" required pattern="\d\d*" >
         </br>
         <label>imie koordynatora</label>
         <input type="text" placeholder="imie koordynatora" name="imie_koordynatora" th:value="${imie_koordynatora}" required >
