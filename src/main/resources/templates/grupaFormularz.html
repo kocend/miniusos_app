@@ -5,6 +5,9 @@
     <title>Grupa</title>
 </head>
 <body>
+<a href="/logout">wyloguj</a>
+<hr>
+
 <div class="grupaForm">
     <h1>Grupa</h1>
     <p>formularz grupy</p>
@@ -18,12 +21,17 @@
         </br>
         <label>dzien tygodnia</label>
         <!-- do zrobienia poprawne wstrzykiwanie dnia tygodnia -->
+
+        wartość przed edycją: <b th:text="${dzien}"></b>
+        </br>
+        <b>pamiętaj</b> o wybraniu dnia(domyślnie poniedziałek):
+        <label>dzien tygodnia</label>
         <select name="dzien_tygodnia" th:value="${dzien}">
-            <option value="poniedziałek">poniedziałek</option>
+            <option value="poniedzialek">poniedziałek</option>
             <option value="wtorek">wtorek</option>
-            <option value="środa">środa</option>
+            <option value="sroda">środa</option>
             <option value="czwartek">czwartek</option>
-            <option value="piątek">piątek</option>
+            <option value="piatek">piątek</option>
             <option value="sobota">sobota</option>
             <option value="niedziela">niedziela</option>
         </select>

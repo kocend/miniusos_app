@@ -45,23 +45,29 @@ public class MainController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String Register(@RequestParam(value = "account-type",required = true) String accountType,
+    public ModelAndView Register(@RequestParam(value = "account-type",required = true) String accountType,
                            @RequestParam(value = "name",required = true) String name,
                            @RequestParam(value = "last-name",required = true) String lastName,
                            @RequestParam(value = "password",required = true) String password,
                            @RequestParam(value = "password-repeat",required = true) String passwordRepeat){
 
-        int returnedValue;
+        Integer returnedValue=0;
+
+        ModelAndView m = new ModelAndView();
+        m.setViewName("registrated");
 
         if(password.equals(passwordRepeat))
            returnedValue = registration.register(accountType,name,lastName,password);
-        else
-            return "passwords are not the same";
-
+        else {
+            m.addObject("message","hasła muszą być takie same");
+        }
         if(returnedValue==2)
-            return "account already exists";
-        else
-            return "everything is allright your index: "+returnedValue;
+           m.addObject("message","konto już istnieje");
+        else {
+            m.addObject("message","pomyślnie zarejestrowano");
+            m.addObject("index","twój login oraz identyfikator: "+returnedValue.toString());
+        }
+        return m;
     }
 
 }

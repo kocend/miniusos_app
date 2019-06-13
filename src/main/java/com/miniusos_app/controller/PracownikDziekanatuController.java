@@ -34,7 +34,7 @@ public class PracownikDziekanatuController {
         return m;
     }
 
-    @RequestMapping(value = "/pracownik_dziekanatu", method = RequestMethod.PUT)
+    @RequestMapping(value = "/pracownik_dziekanatu/get_update", method = RequestMethod.GET)
     public ModelAndView updateGroup(@RequestParam(value = "option") Integer id_grupy) {
         ModelAndView m = new ModelAndView();
         m.setViewName("grupaFormularz");

@@ -1,7 +1,5 @@
 package com.miniusos_app.dao;
 
-import com.fasterxml.jackson.annotation.ObjectIdGenerator.IdKey;
-import com.miniusos_app.dao.dataBaseServiceInterface;
 import com.miniusos_app.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -48,22 +46,22 @@ public class DBConnect implements dataBaseServiceInterface {
 				String nazwiskoKoordynatora = new String(rs.getString("nazwisko"));
 				Integer idKoordynatora = new Integer(rs.getInt("id_k"));
 				
-				DZIEN_TYGODNIA dzien = DZIEN_TYGODNIA.poniedziałek;
+				DZIEN_TYGODNIA dzien = DZIEN_TYGODNIA.poniedzialek;
 				switch(dzienTygodnia.toLowerCase()) {
 				case "poniedzialek":
-					dzien = DZIEN_TYGODNIA.poniedziałek;
+					dzien = DZIEN_TYGODNIA.poniedzialek;
 					break;
 				case "wtorek":
 					dzien = DZIEN_TYGODNIA.wtorek;
 					break;
 				case "sroda":
-					dzien = DZIEN_TYGODNIA.środa;
+					dzien = DZIEN_TYGODNIA.sroda;
 					break;
 				case "czwartek":
 					dzien = DZIEN_TYGODNIA.czwartek;
 					break;
 				case "piatek":
-					dzien = DZIEN_TYGODNIA.piątek;
+					dzien = DZIEN_TYGODNIA.piatek;
 					break;
 				case "sobota":
 					dzien = DZIEN_TYGODNIA.sobota;
@@ -72,7 +70,7 @@ public class DBConnect implements dataBaseServiceInterface {
 					dzien = DZIEN_TYGODNIA.niedziela;
 					break;
 					default:
-						dzien=DZIEN_TYGODNIA.poniedziałek;
+						dzien=DZIEN_TYGODNIA.poniedzialek;
 				}
 				
 				Koordynator koordynator = new Koordynator(imieKoordynatora, nazwiskoKoordynatora, idKoordynatora);
@@ -105,22 +103,22 @@ public class DBConnect implements dataBaseServiceInterface {
 				String nazwiskoKoordynatora = new String(rs.getString("nazwisko"));
 				Integer idKoordynatora = new Integer(rs.getInt("id_k"));
 
-				DZIEN_TYGODNIA dzien = DZIEN_TYGODNIA.poniedziałek;
+				DZIEN_TYGODNIA dzien = DZIEN_TYGODNIA.poniedzialek;
 				switch (dzienTygodnia.toLowerCase()) {
 					case "poniedzialek":
-						dzien = DZIEN_TYGODNIA.poniedziałek;
+						dzien = DZIEN_TYGODNIA.poniedzialek;
 						break;
 					case "wtorek":
 						dzien = DZIEN_TYGODNIA.wtorek;
 						break;
 					case "sroda":
-						dzien = DZIEN_TYGODNIA.środa;
+						dzien = DZIEN_TYGODNIA.sroda;
 						break;
 					case "czwartek":
 						dzien = DZIEN_TYGODNIA.czwartek;
 						break;
 					case "piatek":
-						dzien = DZIEN_TYGODNIA.piątek;
+						dzien = DZIEN_TYGODNIA.piatek;
 						break;
 					case "sobota":
 						dzien = DZIEN_TYGODNIA.sobota;
@@ -128,8 +126,6 @@ public class DBConnect implements dataBaseServiceInterface {
 					case "niedziela":
 						dzien = DZIEN_TYGODNIA.niedziela;
 						break;
-						default:
-							dzien=DZIEN_TYGODNIA.poniedziałek;
 				}
 
 				Koordynator koordynator = new Koordynator(imieKoordynatora, nazwiskoKoordynatora, idKoordynatora);
@@ -371,6 +367,12 @@ public class DBConnect implements dataBaseServiceInterface {
 		 int odp = -1;
 			try {
 				st = con.createStatement();
+				rs = st.executeQuery("SELECT nrUSOS FROM przynaleznosc WHERE id_gr="+
+						id_grupy+" AND nrUSOS="+s.getNumerUSOS()+";");
+				while (rs.next()){
+					//znaczy że jest już
+					return -1;
+				}
 				odp = st.executeUpdate("INSERT INTO przynaleznosc (nrUSOS, id_gr) VALUES ("
 						+ s.getNumerUSOS()+","+id_grupy+")");
 				//st.close();

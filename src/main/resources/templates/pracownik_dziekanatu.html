@@ -5,6 +5,8 @@
     <title>PracownikDziekanatu</title>
 </head>
 <body>
+<a href="/logout">wyloguj</a>
+<hr>
 
 <div class="pracownikDziekanatuForm" th:if="${not #lists.isEmpty(grupy)}">
     <h1>Menadżer pracownika dziekanatu</h1>
@@ -34,7 +36,7 @@
         <td th:text="${grupa.koordynator.getImie()}">
         <td th:text="${grupa.koordynator.getNazwisko()}"></td>
         <td>
-            <input th:type="radio" th:name="option" th:value="${grupa.getId_grupy()}" th:form="putForm" required>
+            <input th:type="radio" th:name="option" th:value="${grupa.getId_grupy()}" th:form="getForm" required>
         </td>
         <td>
             <input th:type="radio" th:name="option" th:value="${grupa.getId_grupy()}" th:form="deleteForm" required>
@@ -45,7 +47,7 @@
             <form action="/pracownik_dziekanatu", method="post" id="postForm">
                 <input type="submit" name="new" value="nowa grupa">
             </form>
-            <form th:action="@{/pracownik_dziekanatu}" th:method="put" th:id="putForm">
+            <form th:action="@{/pracownik_dziekanatu/get_update}" th:method="get" th:id="getForm">
                 <input type="submit" name="update" value="edytuj zaznaczoną grupę">
             </form>
             <form th:action="@{/pracownik_dziekanatu}" th:method="delete" th:id="deleteForm">
