@@ -145,7 +145,24 @@ public class DBConnect implements dataBaseServiceInterface {
 		}
 		return null;
 	}
-	
+
+	@Override
+	public int pobierzIDOstatniejGrupy() {
+		int ID=-1;
+		try {
+			PreparedStatement preparedStatement = con.prepareStatement("SELECT id_gr from grupy ORDER by id_gr DESC LIMIT 1;");
+			rs = preparedStatement.executeQuery();
+			while (rs.next())
+				ID=rs.getInt("id_gr");
+		}
+		catch (SQLException ex){
+			ex.printStackTrace();
+			return -1;
+		}
+
+		return ID;
+	}
+
 	public int dodajGrupe(Grupa g) {
 		int odp = -1;
 		try {
@@ -283,14 +300,19 @@ public class DBConnect implements dataBaseServiceInterface {
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT * FROM studenci WHERE nrUSOS="+id);
-			String imie = rs.getString("imie");
-			String nazwisko = rs.getString("nazwisko");
+			String imie;
+			String nazwisko;
+			Student s=null;
+			while(rs.next()) {
+				imie = rs.getString("imie");
+				nazwisko = rs.getString("nazwisko");
 //			Integer nrUSOS = rs.getInt("nrUSOS");
 //			Double ocenaKoncowa = rs.getDouble("ocena_koncowa");
 //			Integer kolokwium1 = rs.getInt("kolokwium1_pkt");
 //			Integer kolokwium2 = rs.getInt("kolokwium2_pkt");
 //			Integer sumaPkt = rs.getInt("suma_pkt");
-			Student s = new Student(imie, nazwisko, id);
+				s = new Student(imie, nazwisko, id);
+			}
 //			s.setPunktyKolokwiumI(kolokwium1);
 //			s.setPunktyKolokwiumII(kolokwium2);
 //			s.setOcenaKoncowa(ocenaKoncowa);
@@ -322,12 +344,18 @@ public class DBConnect implements dataBaseServiceInterface {
              Integer kolokwiumI, Integer kolokwiumII) {
 		 int odp = -1;
 			try {
-				st = con.createStatement();
-				odp = st.executeUpdate("UPDATE przynaleznosc SET ocena_koncowa="+ocenaKoncowa
-						+", punkty_kolokwium1="+kolokwiumI
-						+", punkty_kolokwium2"+kolokwiumII
-						+" WHERE id_gr="+id_grupy
-						+" AND nrUSOS="+id_studenta);
+				PreparedStatement preparedStatement = con.prepareStatement("UPDATE przynaleznosc SET ocena_koncowa=? " +
+						", punkty_kolokwium1=? " +
+						", punkty_kolokwium2=? " +
+						"WHERE id_gr=? " +
+						" AND nrUSOS=?;");
+				preparedStatement.setDouble(1,ocenaKoncowa);
+				preparedStatement.setInt(2,kolokwiumI);
+				preparedStatement.setInt(3,kolokwiumII);
+				preparedStatement.setInt(4,id_grupy);
+				preparedStatement.setInt(5,id_studenta);
+
+				odp = preparedStatement.executeUpdate();
 				//st.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

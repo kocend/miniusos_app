@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerFragment">
     <meta charset="UTF-8">
-    <title>StudentData</title>
+    <title>PracownikDziekanatu</title>
 </head>
 <body>
-Hello this is site for Student Data!
+
+<div class="studentForm" th:if="${not #lists.isEmpty(grupy)}">
+    <h1>Menadżer studenta</h1>
+    <hr>
+    <table>
+        <tr>
+            <th>nazwa</th>
+            <th>numer</th>
+            <th>dzien tygodnia</th>
+            <th>godzina rozpoczecia</th>
+            <th>godzina zakonczenia</th>
+            <th>limit miejsc</th>
+            <th>imie koordynatora</th>
+            <th>nazwisko koordynatora</th>
+            <th>zarejestruj</th>
+        </tr>
+        <tr th:each="grupa : ${grupy}">
+            <td th:text="${grupa.getNazwaGrupy()}"></td>
+            <td th:text="${grupa.getId_grupy()}"></td>
+            <td th:text="${grupa.getDzienTygodnia()}"></td>
+            <td th:text="${grupa.getGodzinaRozpoczecia()}"></td>
+            <td th:text="${grupa.getGodzinaZakonczenia()}"></td>
+            <td th:text="${grupa.getLimitMiejsc()}"></td>
+            <td th:text="${grupa.koordynator.getImie()}">
+            <td th:text="${grupa.koordynator.getNazwisko()}"></td>
+            <td>
+                <input th:type="radio" th:name="option" th:value="${grupa.getId_grupy()}" th:form="putForm" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/student/zarejestruj", method="post" id="postForm">
+                    <input type="submit" name="new" value="zarejestruj do wybranej grupy">
+                </form>
+            </td>
+        </tr>
+    </table>
+
+
+
+</div>
 </body>
 </html>

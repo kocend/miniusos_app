@@ -14,6 +14,7 @@ public interface dataBaseServiceInterface {
     //dla wszystkich
     public List<Grupa> pobierzWszystkieGrupy();
     public Grupa pobierzGrupePoID(Integer id_grupy);
+    public int pobierzIDOstatniejGrupy();
 
     //dla pracownika_dziekanatu
     public int dodajGrupe(Grupa g);

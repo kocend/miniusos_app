@@ -29,6 +29,7 @@ public class PracownikDziekanatuController {
     public ModelAndView addNewGroup() {
         ModelAndView m = new ModelAndView();
         m.setViewName("grupaFormularz");
+        m.addObject("numer_id",-2);
         m.addObject("koordynatorzy",pracownikDziekanatuService.getAllMasters());
         return m;
     }
@@ -72,23 +73,24 @@ public class PracownikDziekanatuController {
                                  @RequestParam(value = "imie_koordynatora") String imieKoordynatora,
                                  @RequestParam(value = "nazwisko_koordynatora") String nazwiskoKoordynatora) {
 
-        Grupa gr = pracownikDziekanatuService.getGroupByID(id);
-        //jeśli grupa nie istnieje
-        if(null==gr) {
-            Grupa g = new Grupa(nazwaGrupy, id, dzienTygodnia,
-                    godzinaRozpoczecia, godzinaZakonczenia, limitMiejsc,
-                    new Koordynator(imieKoordynatora, nazwiskoKoordynatora,id_k));
+       if(id==-2) {
+           //tworz nową
+           int idOfLastGroup = pracownikDziekanatuService.getIdOfLastGroup();
+           if (idOfLastGroup == -1)
+               return addNewGroup();
+           Grupa g = new Grupa(nazwaGrupy, idOfLastGroup + 1, dzienTygodnia,
+                   godzinaRozpoczecia, godzinaZakonczenia, limitMiejsc,
+                   new Koordynator(imieKoordynatora, nazwiskoKoordynatora, id_k));
 
-            if(pracownikDziekanatuService.addGroup(g)==5)
-                return addNewGroup();
-        }
-        else{
+           if (pracownikDziekanatuService.addGroup(g) == 5)
+               return addNewGroup();
+       }
+       else{
             //zaktualizuj istniejącą
             pracownikDziekanatuService.updateGroupByID(id,new Grupa(nazwaGrupy, id, dzienTygodnia,
                     godzinaRozpoczecia, godzinaZakonczenia, limitMiejsc,
                     new Koordynator(imieKoordynatora, nazwiskoKoordynatora,id_k)));
         }
-        //processing new group
 
         return getPracownikDziekanatuForm();
     }

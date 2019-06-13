@@ -17,6 +17,8 @@ public class StudentController {
     public ModelAndView getStudentForm() {
         ModelAndView m = new ModelAndView();
         m.setViewName("student");
+
+
         return m;
     }
 }

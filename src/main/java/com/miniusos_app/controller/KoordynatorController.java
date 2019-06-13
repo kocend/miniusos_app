@@ -31,12 +31,12 @@ public class KoordynatorController {
     }
 
     @RequestMapping(value = "/koordynator/magiczne5", method = RequestMethod.PUT)
-    public String magic5(HttpServletRequest request) {
+    public ModelAndView magic5(HttpServletRequest request) {
         String user = request.getUserPrincipal().getName();
         //pobranie id_koordynatora
-        koordynatorService.magic5(4);
+        koordynatorService.magic5(Integer.parseInt(user));
 
-        return user;
+        return getKoordynatorForm(request);
     }
 
     @RequestMapping(value = "/koordynator/wystaw_oceny", method = RequestMethod.GET)

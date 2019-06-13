@@ -13,8 +13,8 @@
         <label>nazwa</label>
         <input type="text" placeholder="nazwa grupy" name="nazwa" th:value="${nazwa}" required >
         </br>
-        <label>numer id</label>
-        <input type="text" placeholder="numer id" name="id" th:value="${numer_id}" required >
+        <!--<label>numer id</label>-->
+        <input type="hidden" placeholder="numer id" name="id" th:value="${numer_id}" readonly >
         </br>
         <label>dzien tygodnia</label>
         <!-- do zrobienia poprawne wstrzykiwanie dnia tygodnia -->

@@ -37,6 +37,10 @@ public class PracownikDziekanatuService {
         return dbInterface.pobierzGrupePoID(id_grupy);
     }
 
+    public int getIdOfLastGroup(){
+        return dbInterface.pobierzIDOstatniejGrupy();
+    }
+
     public int deleteFromGroup(Integer id_grupy){
         dbInterface.usunGrupePoID(id_grupy);
         return 1;
