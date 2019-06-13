@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="headerFragment">
     <meta charset="UTF-8">
-    <title>PracownikDziekanatu</title>
+    <title>Student</title>
 </head>
 <body>
 
@@ -31,7 +31,7 @@
             <td th:text="${grupa.koordynator.getImie()}">
             <td th:text="${grupa.koordynator.getNazwisko()}"></td>
             <td>
-                <input th:type="radio" th:name="option" th:value="${grupa.getId_grupy()}" th:form="putForm" required>
+                <input th:type="radio" th:name="chosenGroup" th:value="${grupa.getId_grupy()}" th:form="postForm" required>
             </td>
         </tr>
         <tr>
@@ -42,9 +42,25 @@
             </td>
         </tr>
     </table>
-
-
-
+</div>
+<hr>
+<div class="pracownikDziekanatuForm" th:if="${not #lists.isEmpty(wyniki)}">
+    <h2>Moje grupy i oceny</h2>
+    <hr>
+    <table>
+        <tr>
+            <th>nazwa grupy</th>
+            <th>kolokwium 1</th>
+            <th>kolokwium 2</th>
+            <th>ocena końcowa</th>
+        </tr>
+        <tr th:each="wynik : ${wyniki}">
+            <td th:text="${wynik.getNazwaGrupy()}"></td>
+            <td th:text="${wynik.getKolokwium1()}"></td>
+            <td th:text="${wynik.getKolokwium2()}"></td>
+            <td th:text="${wynik.getOcenaKoncowa()}"></td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

@@ -325,12 +325,15 @@ public class DBConnect implements dataBaseServiceInterface {
 		}
 		return null;
 	}
-	
-	public int magicznyGuzikWystaw5tymCoNieMajaOceny(Integer id_grupy) {
+	//id_koordynatora
+	public int magicznyGuzikWystaw5tymCoNieMajaOceny(Integer id_koordynatora) {
 		int odp = -1;
 		try {
-			st = con.createStatement();
-			odp = st.executeUpdate("UPDATE przynaleznosc SET ocena_koncowa=5 WHERE ocena_koncowa IS NULL");
+			PreparedStatement preparedStatement = con.prepareStatement("UPDATE przynaleznosc SET ocena_koncowa=2 " +
+					"WHERE (ocena_koncowa IS NULL OR ocena_koncowa=0.0) " +
+					"AND id_gr IN(SELECT id_gr FROM grupy WHERE id_k=?);");
+			preparedStatement.setInt(1,id_koordynatora);
+			odp = preparedStatement.executeUpdate();
 			//st.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
